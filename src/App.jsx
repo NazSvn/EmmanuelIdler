@@ -12,9 +12,9 @@ function App() {
   return (
     <>
       <About />
-      <Contact />
       <div>{test}</div>
       <ProjectTile />
+      <Contact />
       <Footer />
     </>
   );

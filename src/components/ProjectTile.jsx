@@ -4,32 +4,32 @@ import { TbMailFilled } from "react-icons/tb";
 const ProjectTile = () => {
   return (
     <>
-      <div className="p-5 relative mx-auto grid h-96 w-[1000px] grid-cols-12 border">
-        <div className="self-center absolute -z-10 col-span-7 col-start-1 border border-red-400">
+      <div className="container relative mx-auto grid h-96 max-w-4xl grid-cols-12 items-center p-5">
+        <div className="absolute col-span-7 col-start-1 max-sm:col-span-full">
           <a
             href="https://nazsvn.github.io/forCodeCampLandingPage/"
             target="_blank"
             rel="noopener noreferrer"
           >
             <img
-              className=""
+              className="grayscale transition-all duration-700 ease-in-out hover:grayscale-0"
               src="https://nazsvn.github.io/forCodeCampLandingPage/thumbnail.png"
               alt="Project thumbnail"
             />
           </a>
         </div>
-        <div className="col-span-8 col-start-7 border border-rose-600">
+        <div className="z-10 col-span-8 col-start-7 max-md:col-start-6 max-sm:col-span-full">
           <div>
-            <p className="text-right text-lg mb-2">Featured Project</p>
-            <h3 className="text-right mb-3">Landing Page</h3>
+            <p className="mb-2 text-right text-xs">Featured Project</p>
+            <h3 className="mb-3 text-right text-2xl">Landing Page</h3>
             <div>
-              <p className="bg-slate-400 p-4">
+              <p className="rounded-md bg-[#242424] py-4 text-sm text-right">
                 A landing page created for the freeCodeCamp Responsive Web
                 Design Certification.A landing page created for the freeCodeCamp
-                Responsive Web Design Certification
+                Responsive Web Design Certification 
               </p>
             </div>
-            <ul className="flex justify-end m-2 gap-3">
+            <ul className="m-2 flex justify-end gap-3 text-xs">
               <li>HTML</li>
               <li>CSS</li>
               <li>Styling</li>
