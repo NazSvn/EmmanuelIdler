@@ -23,7 +23,7 @@ const ProjectTile = () => {
             <p className="mb-2 text-right text-xs">Featured Project</p>
             <h3 className="mb-3 text-right text-2xl">Landing Page</h3>
             <div>
-              <p className="rounded-md bg-[#242424] py-4 text-sm text-right">
+              <p className="rounded-md bg-[#242424] p-4 text-sm text-right">
                 A landing page created for the freeCodeCamp Responsive Web
                 Design Certification.A landing page created for the freeCodeCamp
                 Responsive Web Design Certification 
