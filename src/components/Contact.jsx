@@ -5,7 +5,10 @@ import { TbMailFilled } from "react-icons/tb";
 const Contact = () => {
   return (
     <>
-      <div className="container mx-auto min-h-screen content-center  text-center">
+      <div
+        id="contact"
+        className="container mx-auto min-h-screen content-center text-center"
+      >
         <h2 className="mb-4 text-5xl font-bold">Find me here</h2>
         <div className="d flex h-20 items-center justify-center">
           <span className="w-20">

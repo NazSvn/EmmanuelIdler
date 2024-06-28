@@ -5,8 +5,9 @@ export const GlobalContext = createContext(null);
 
 export default function GlobalState({ children }) {
   const [test, setTest] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <GlobalContext.Provider value={{ test, setTest }}>
+    <GlobalContext.Provider value={{ test, setTest, isOpen, setIsOpen }}>
       {children}
     </GlobalContext.Provider>
   );

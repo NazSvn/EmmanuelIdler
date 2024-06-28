@@ -4,7 +4,7 @@ import { TbMailFilled } from "react-icons/tb";
 const ProjectTile = () => {
   return (
     <>
-      <div className="container relative mx-auto grid h-96 max-w-4xl grid-cols-12 items-center p-5">
+      <div id="projects" className="container relative mx-auto grid h-96 max-w-4xl grid-cols-12 items-center p-5">
         <div className="absolute col-span-7 col-start-1 max-sm:col-span-full">
           <a
             href="https://nazsvn.github.io/forCodeCampLandingPage/"

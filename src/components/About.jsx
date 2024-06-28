@@ -2,7 +2,10 @@ import { RiArrowDropRightLine } from "react-icons/ri";
 
 const About = () => {
   return (
-    <div className="container mx-auto min-h-screen max-w-4xl content-center p-2">
+    <div
+      id="about"
+      className="container mx-auto min-h-screen max-w-4xl content-center p-2"
+    >
       <h1 className="mb-5 text-5xl font-bold">About me</h1>
       <div className="container flex gap-3 max-sm:flex-col">
         <p className="w-3/5 text-wrap leading-relaxed max-sm:w-auto">
