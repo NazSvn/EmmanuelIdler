@@ -18,7 +18,7 @@ const ProjectTile = () => {
             />
           </a>
         </div>
-        <div className="z-10 col-span-8 col-start-7 max-md:col-start-6 max-sm:col-span-full">
+        <div className="z-[1] col-span-8 col-start-7 max-md:col-start-6 max-sm:col-span-full">
           <div>
             <p className="mb-2 text-right text-xs">Featured Project</p>
             <h3 className="mb-3 text-right text-2xl">Landing Page</h3>
