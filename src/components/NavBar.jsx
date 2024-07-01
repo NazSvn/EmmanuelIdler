@@ -12,6 +12,9 @@ const NavBar = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+  const toggleNavBar = () => {
+    setIsShown(!isShown);
+  };
 
   const handleClickOutside = (e) => {
     if (burgerNavRef.current && !burgerNavRef.current.contains(e.target)) {
@@ -33,7 +36,6 @@ const NavBar = () => {
     } else {
       setAtTop(true);
     }
-    console.log(window.scrollY);
   };
 
   useEffect(() => {
@@ -66,55 +68,76 @@ const NavBar = () => {
     <>
       <nav
         id="navBar"
-        className={`fixed left-0 right-0 top-0 z-50 flex h-16 items-center justify-between px-3 ${!isShown && "-translate-y-full"} delay-75 duration-300 ${atTop ? "shadow-none" : "shadow-[0px_4px_10px_-6px_rgba(255,255,255,0.88)]"}`}
+        className={`fixed left-0 right-0 top-0 z-50 flex h-16 items-center justify-between px-4 ${!isShown && "-translate-y-full"} delay-75 duration-300 ${atTop || !isShown ? "shadow-none" : "shadow-[0px_13px_23px_-11px_rgba(0,0,0,0.41)]"} bg-[#242424b2] backdrop-blur ${atTop && "bg-inherit"} `}
       >
-        <h3>Emmanuel Idler</h3>
-        <ul className="hidden w-96 justify-evenly md:flex">
+        <h3 className="h-full content-center p-2 text-xl hover:text-green-300">
+          <Link
+            className="cursor-pointer"
+            to="hero"
+            smooth={true}
+            offset={-300}
+            duration={1000}
+          >
+            {" "}
+            Emmanuel Idler
+          </Link>
+        </h3>
+        <ul className="hidden h-full w-80 items-center justify-between p-2 md:flex">
           <li className="hover:text-green-300">
             <Link
+              className="cursor-pointer p-2"
               to="about"
               smooth={true}
               offset={-50}
               duration={1000}
               activeClass="active"
               spy={true}
+              onClick={toggleNavBar}
             >
               About
             </Link>
           </li>
           <li className="hover:text-green-300">
             <Link
+              className="cursor-pointer p-2"
               to="projects"
               smooth={true}
               offset={-50}
               duration={1000}
               activeClass="active"
               spy={true}
+              onClick={toggleNavBar}
             >
               Projects
             </Link>
           </li>
           <li className="hover:text-green-300">
             <Link
+              className="cursor-pointer p-2"
               to="contact"
               smooth={true}
               offset={-50}
               duration={1000}
               activeClass="active"
               spy={true}
+              onClick={toggleNavBar}
             >
               Contact
             </Link>
           </li>
         </ul>
       </nav>
-      <div className="fixed bottom-5 right-16">
-        <Link to="hero" smooth={true} offset={-300} duration={1000}>
-          <SlArrowUp className="size-7 transition-all duration-300 hover:-translate-y-1 hover:fill-green-600" />
-        </Link>
-      </div>
+      {!atTop && (
+        <div className="fixed bottom-1 right-2 z-50 rounded bg-[#242424] p-3 md:right-5">
+          <Link to="hero" smooth={true} offset={-300} duration={1000}>
+            <SlArrowUp className="size-5 transition-all duration-300 hover:-translate-y-1 hover:fill-green-600 md:size-6" />
+          </Link>
+        </div>
+      )}
 
-      <div className="fixed right-5 top-6 z-[52] md:hidden">
+      <div
+        className={`fixed right-5 top-6 z-[52] md:hidden ${!isShown && "-translate-y-12"} delay-75 duration-300`}
+      >
         <button onClick={toggleMenu}>
           {isOpen ? (
             <FiX className="size-7 -translate-x-3" />
