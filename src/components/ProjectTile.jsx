@@ -1,59 +1,108 @@
 import { FaGithubSquare } from "react-icons/fa";
 import { TbMailFilled } from "react-icons/tb";
 
+const projects = [
+  {
+    href: "https://nazsvn.github.io/forCodeCampLandingPage/",
+    img: "https://nazsvn.github.io/forCodeCampLandingPage/thumbnail.png",
+    title: "Landing Page",
+    description:
+      " A landing page created for the freeCodeCamp Responsive Web Design Certification.A landing page created for the freeCodeCamp Responsive Web Design Certification",
+    tech: ["HTML", "CSS", "Styling", "vs code"],
+    code: "https://github.com/NazSvn",
+  },
+  {
+    href: "https://nazsvn.github.io/forCodeCampLandingPage/",
+    img: "https://nazsvn.github.io/forCodeCampLandingPage/thumbnail.png",
+    title: "Landing Page",
+    description:
+      " A landing page created for the freeCodeCamp Responsive Web Design Certification.A landing page created for the freeCodeCamp Responsive Web Design Certification",
+    tech: ["HTML", "CSS", "Styling", "vs code"],
+    code: "https://github.com/NazSvn",
+  },
+  {
+    href: "https://nazsvn.github.io/forCodeCampLandingPage/",
+    img: "https://nazsvn.github.io/forCodeCampLandingPage/thumbnail.png",
+    title: "Landing Page",
+    description:
+      " A landing page created for the freeCodeCamp Responsive Web Design Certification.A landing page created for the freeCodeCamp Responsive Web Design Certification",
+    tech: ["HTML", "CSS", "Styling", "vs code"],
+    code: "https://github.com/NazSvn",
+  },
+  {
+    href: "https://nazsvn.github.io/forCodeCampLandingPage/",
+    img: "https://nazsvn.github.io/forCodeCampLandingPage/thumbnail.png",
+    title: "Landing Page",
+    description:
+      " A landing page created for the freeCodeCamp Responsive Web Design Certification.A landing page created for the freeCodeCamp Responsive Web Design Certification",
+    tech: ["HTML", "CSS", "Styling", "vs code"],
+    code: "https://github.com/NazSvn",
+  },
+];
 const ProjectTile = () => {
   return (
     <>
-      <div id="projects" className="container relative mx-auto grid h-96 max-w-4xl grid-cols-12 items-center p-5">
-        <div className="absolute col-span-7 col-start-1 max-sm:col-span-full">
-          <a
-            href="https://nazsvn.github.io/forCodeCampLandingPage/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              className="grayscale transition-all duration-700 ease-in-out hover:grayscale-0"
-              src="https://nazsvn.github.io/forCodeCampLandingPage/thumbnail.png"
-              alt="Project thumbnail"
-            />
-          </a>
-        </div>
-        <div className="z-[1] col-span-8 col-start-7 max-md:col-start-6 max-sm:col-span-full">
-          <div>
-            <p className="mb-2 text-right text-xs">Featured Project</p>
-            <h3 className="mb-3 text-right text-2xl">Landing Page</h3>
-            <div>
-              <p className="rounded-md bg-[#242424] p-4 text-sm text-right">
-                A landing page created for the freeCodeCamp Responsive Web
-                Design Certification.A landing page created for the freeCodeCamp
-                Responsive Web Design Certification 
-              </p>
-            </div>
-            <ul className="m-2 flex justify-end gap-3 text-xs">
-              <li>HTML</li>
-              <li>CSS</li>
-              <li>Styling</li>
-              <li>vs code</li>
-            </ul>
-            <div className="text-right">
-              <a
-                href="https://github.com/NazSvn"
-                target="_blank"
-                rel="noopener noreferrer"
+      {projects.map((project, index) => {
+        return (
+          <div key={index}>
+            <div
+              id="projects"
+              className="relative mx-auto mb-5 grid h-96 w-4/5 max-w-4xl grid-cols-12 items-center sm:w-4/5"
+            >
+              <div
+                className={`col-span-12 ${index % 2 ? "absolute md:col-span-7 md:col-end-13" : "absolute md:col-span-7 md:col-start-1"}`}
               >
-                <FaGithubSquare className="m-1 inline size-6 cursor-pointer transition-all hover:text-gray-400" />
-              </a>
-              <a
-                href="mailto:idler90@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="grayscale transition-all duration-700 ease-in-out hover:grayscale-0"
+                    src={project.img}
+                    alt="Project thumbnail"
+                  />
+                </a>
+              </div>
+              <div
+                className={`pointer-events-none z-[2] col-span-12 h-full content-center bg-[#242424] bg-opacity-95 md:col-span-8 md:bg-opacity-0 lg:col-span-6 ${index % 2 ? "md:col-start-1 lg:col-start-1" : "md:col-end-13 lg:col-end-13"}`}
               >
-                <TbMailFilled className="m-1 inline size-6 cursor-pointer transition-all hover:text-gray-400" />
-              </a>
+                <div className={`${index % 2 ? "text-left" : "text-right"}`}>
+                  <p className="my-4 text-xs">Featured Project</p>
+                  <h3 className="mb-4 text-2xl">{project.title}</h3>
+                  <div>
+                    <p className="mb-4 rounded-md bg-[#242424] p-4 text-sm">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <ul className={`my-2 flex gap-3 text-xs ${index % 2 ? '' : 'justify-end'}`}>
+                    {project.tech.map((tech, index) => {
+                      return <li key={index}>{tech}</li>;
+                    })}
+                  </ul>
+                  <div className=" ">
+                    <a
+                      href={project.code}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaGithubSquare className="m-1 inline size-6 cursor-pointer transition-all hover:text-gray-400" />
+                    </a>
+                    <a
+                      href="mailto:idler90@gmail.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <TbMailFilled className="m-1 inline size-6 cursor-pointer transition-all hover:text-gray-400" />
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        );
+      })}
     </>
   );
 };

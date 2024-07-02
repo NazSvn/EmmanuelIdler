@@ -4,7 +4,6 @@ import { PropTypes } from "prop-types";
 export const GlobalContext = createContext(null);
 
 export default function GlobalState({ children }) {
-  const [test, setTest] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [isShown, setIsShown] = useState(true);
   const [atTop, setAtTop] = useState(true);
@@ -12,8 +11,6 @@ export default function GlobalState({ children }) {
   return (
     <GlobalContext.Provider
       value={{
-        test,
-        setTest,
         isOpen,
         setIsOpen,
         isShown,
@@ -28,5 +25,5 @@ export default function GlobalState({ children }) {
 }
 
 GlobalState.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.node.isRequired,
 };
