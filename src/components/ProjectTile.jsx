@@ -1,44 +1,7 @@
 import { FaGithubSquare } from "react-icons/fa";
 import { TbMailFilled } from "react-icons/tb";
+import projects from "../data/projects.json";
 
-const projects = [
-  {
-    href: "https://nazsvn.github.io/forCodeCampLandingPage/",
-    img: "https://nazsvn.github.io/forCodeCampLandingPage/thumbnail.png",
-    title: "Landing Page",
-    description:
-      " A landing page created for the freeCodeCamp Responsive Web Design Certification.A landing page created for the freeCodeCamp Responsive Web Design Certification",
-    tech: ["HTML", "CSS", "Styling", "vs code"],
-    code: "https://github.com/NazSvn",
-  },
-  {
-    href: "https://nazsvn.github.io/forCodeCampLandingPage/",
-    img: "https://nazsvn.github.io/forCodeCampLandingPage/thumbnail.png",
-    title: "Landing Page",
-    description:
-      " A landing page created for the freeCodeCamp Responsive Web Design Certification.A landing page created for the freeCodeCamp Responsive Web Design Certification",
-    tech: ["HTML", "CSS", "Styling", "vs code"],
-    code: "https://github.com/NazSvn",
-  },
-  {
-    href: "https://nazsvn.github.io/forCodeCampLandingPage/",
-    img: "https://nazsvn.github.io/forCodeCampLandingPage/thumbnail.png",
-    title: "Landing Page",
-    description:
-      " A landing page created for the freeCodeCamp Responsive Web Design Certification.A landing page created for the freeCodeCamp Responsive Web Design Certification",
-    tech: ["HTML", "CSS", "Styling", "vs code"],
-    code: "https://github.com/NazSvn",
-  },
-  {
-    href: "https://nazsvn.github.io/forCodeCampLandingPage/",
-    img: "https://nazsvn.github.io/forCodeCampLandingPage/thumbnail.png",
-    title: "Landing Page",
-    description:
-      " A landing page created for the freeCodeCamp Responsive Web Design Certification.A landing page created for the freeCodeCamp Responsive Web Design Certification",
-    tech: ["HTML", "CSS", "Styling", "vs code"],
-    code: "https://github.com/NazSvn",
-  },
-];
 const ProjectTile = () => {
   return (
     <>
@@ -57,11 +20,28 @@ const ProjectTile = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img
-                    className="grayscale transition-all duration-700 ease-in-out hover:grayscale-0"
-                    src={project.img}
-                    alt="Project thumbnail"
-                  />
+                  <picture>
+                    <source
+                      type="image/avif"
+                      srcSet={`${project.images.avif.srcset["175w"]} 175w, ${project.images.avif.srcset["350w"]} 350w, ${project.images.avif.srcset["700w"]} 700w`}
+                      sizes={project.images.avif.sizes}
+                    />
+                    <source
+                      type="image/webp"
+                      srcSet={`${project.images.webp.srcset["175w"]} 175w, ${project.images.webp.srcset["350w"]} 350w, ${project.images.webp.srcset["700w"]} 700w`}
+                      sizes={project.images.webp.sizes}
+                    />
+                    <img
+                      width="700"
+                      height="438"
+                      src={project.images.png.srcset["700w"]}
+                      srcSet={`${project.images.png.srcset["175w"]} 175w, ${project.images.png.srcset["350w"]} 350w, ${project.images.png.srcset["700w"]} 700w`}
+                      sizes={project.images.png.sizes}
+                      alt="Project thumbnail"
+                      className="grayscale transition-all duration-700 ease-in-out hover:grayscale-0"
+                      style={{ objectFit: "cover", opacity: 1 }}
+                    />
+                  </picture>
                 </a>
               </div>
               <div
@@ -76,7 +56,9 @@ const ProjectTile = () => {
                     </p>
                   </div>
 
-                  <ul className={`my-2 flex gap-3 text-xs ${index % 2 ? '' : 'justify-end'}`}>
+                  <ul
+                    className={`my-2 flex gap-3 text-xs ${index % 2 ? "" : "justify-end"}`}
+                  >
                     {project.tech.map((tech, index) => {
                       return <li key={index}>{tech}</li>;
                     })}
