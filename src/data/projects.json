@@ -61,8 +61,8 @@
       }
     },
     "title": "Tenzies",
-    "description": "A dice game called tenzies, created with React. The object of the game is to roll the dice until all are the same you  can click each die to freeze it at its current value between rolls. ",
-    "tech": ["HTML", "CSS", "Styling", "vs code", "React"],
+    "description": "Tenzies is a dice game where the object is to roll the dice until all show the same value. You can click each die to freeze it at its current value between rolls. This game was built using React.",
+    "tech": ["HTML", "CSS", "React"],
     "code": "https://github.com/NazSvn/TENZIES"
   },
   {
