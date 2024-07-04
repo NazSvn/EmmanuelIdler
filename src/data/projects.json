@@ -95,7 +95,7 @@
     },
     "title": "Landing Page",
     "description": " A landing page created for the freeCodeCamp Responsive Web Design Certification.A landing page created for the freeCodeCamp Responsive Web Design Certification",
-    "tech": ["HTML", "CSS", "Styling", "vs code"],
-    "code": "https://github.com/NazSvn"
+    "tech": ["HTML", "CSS"],
+    "code": "https://github.com/NazSvn/forCodeCampLandingPage"
   }
 ]
