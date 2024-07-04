@@ -1,36 +1,36 @@
 [
   {
-    "href": "https://nazsvn.github.io/forCodeCampLandingPage/",
+    "href": "https://nazsvn.github.io/Pokedesk/",
     "images": {
       "avif": {
         "srcset": {
-          "175w": "../src/assets/images/landing175.avif",
-          "350w": "../src/assets/images/landing350.avif",
-          "700w": "../src/assets/images/landing700.avif"
+          "175w": "../src/assets/images/poke175.avif",
+          "350w": "../src/assets/images/poke350.avif",
+          "700w": "../src/assets/images/poke700.avif"
         },
         "sizes": "(min-width: 700px) 700px, 100vw"
       },
       "webp": {
         "srcset": {
-          "175w": "../src/assets/images/landing175.webp",
-          "350w": "../src/assets/images/landing350.webp",
-          "700w": "../src/assets/images/landing700.webp"
+          "175w": "../src/assets/images/poke175.webp",
+          "350w": "../src/assets/images/poke350.webp",
+          "700w": "../src/assets/images/poke700.webp"
         },
         "sizes": "(min-width: 700px) 700px, 100vw"
       },
       "png": {
         "srcset": {
-          "175w": "../src/assets/images/landing175.png",
-          "350w": "../src/assets/images/landing350.png",
-          "700w": "../src/assets/images/landing700.png"
+          "175w": "../src/assets/images/poke175.png",
+          "350w": "../src/assets/images/poke350.png",
+          "700w": "../src/assets/images/poke700.png"
         },
         "sizes": "(min-width: 700px) 700px, 100vw"
       }
     },
-    "title": "Landing Page",
-    "description": " A landing page created for the freeCodeCamp Responsive Web Design Certification.A landing page created for the freeCodeCamp Responsive Web Design Certification",
-    "tech": ["HTML", "CSS", "Styling", "vs code"],
-    "code": "https://github.com/NazSvn"
+    "title": "Pokédex",
+    "description": "This app was created for freeCodeCamp's JavaScript Algorithms and Data Structures certification. The challenge was to build a Pokémon search app that fetches data from an API and displays the Pokémon's stats and image. The app was created using JavaScript, CSS, and HTML.",
+    "tech": ["HTML", "CSS", "JavaScript"],
+    "code": "https://github.com/NazSvn/Pokedesk"
   },
   {
     "href": "https://nazsvn.github.io/TENZIES/",
@@ -64,5 +64,38 @@
     "description": "A dice game called tenzies, created with React. The object of the game is to roll the dice until all are the same you  can click each die to freeze it at its current value between rolls. ",
     "tech": ["HTML", "CSS", "Styling", "vs code", "React"],
     "code": "https://github.com/NazSvn/TENZIES"
+  },
+  {
+    "href": "https://nazsvn.github.io/forCodeCampLandingPage/",
+    "images": {
+      "avif": {
+        "srcset": {
+          "175w": "../src/assets/images/landing175.avif",
+          "350w": "../src/assets/images/landing350.avif",
+          "700w": "../src/assets/images/landing700.avif"
+        },
+        "sizes": "(min-width: 700px) 700px, 100vw"
+      },
+      "webp": {
+        "srcset": {
+          "175w": "../src/assets/images/landing175.webp",
+          "350w": "../src/assets/images/landing350.webp",
+          "700w": "../src/assets/images/landing700.webp"
+        },
+        "sizes": "(min-width: 700px) 700px, 100vw"
+      },
+      "png": {
+        "srcset": {
+          "175w": "../src/assets/images/landing175.png",
+          "350w": "../src/assets/images/landing350.png",
+          "700w": "../src/assets/images/landing700.png"
+        },
+        "sizes": "(min-width: 700px) 700px, 100vw"
+      }
+    },
+    "title": "Landing Page",
+    "description": " A landing page created for the freeCodeCamp Responsive Web Design Certification.A landing page created for the freeCodeCamp Responsive Web Design Certification",
+    "tech": ["HTML", "CSS", "Styling", "vs code"],
+    "code": "https://github.com/NazSvn"
   }
 ]
