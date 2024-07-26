@@ -75,7 +75,7 @@ const NavBar = () => {
             className="cursor-pointer"
             to="hero"
             smooth={true}
-            offset={-300}
+            offset={-400}
             duration={1000}
           >
             {" "}
@@ -88,7 +88,7 @@ const NavBar = () => {
               className="cursor-pointer p-2"
               to="about"
               smooth={true}
-              offset={-50}
+              offset={0}
               duration={1000}
               activeClass="active"
               spy={true}
