@@ -4,7 +4,7 @@ const Hero = () => {
   return (
     <div
       id="hero"
-      className="container mx-auto mt-[15%] flex max-w-4xl content-center p-2"
+      className="mx-auto mt-60 flex max-w-4xl content-center p-2 sm:border-red-300 md:mt-72"
     >
       <div className="mx-auto">
         <h1 className="mb-5 text-8xl font-bold text-white">Emmanuel Idler</h1>
@@ -25,7 +25,7 @@ const Hero = () => {
             <span className="h-14 w-14 content-center text-center">
               <RiJavascriptFill className="inline size-10 cursor-pointer text-center transition-all duration-300 ease-out hover:size-12 hover:fill-[#f0db4f]" />
             </span>
-            <span className="h-14 w-14 content-center text-center">
+            <span className="githubIcon h-14 w-14 content-center text-center">
               <RiReactjsFill className="inline size-10 cursor-pointer text-center transition-all duration-300 ease-out hover:size-12 hover:fill-[#61dafb]" />
             </span>
           </div>

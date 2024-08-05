@@ -70,7 +70,7 @@ const NavBar = () => {
         id="navBar"
         className={`fixed left-0 right-0 top-0 z-50 flex h-16 items-center justify-between px-4 ${!isShown && "-translate-y-full"} delay-75 duration-300 ${atTop || !isShown ? "shadow-none" : "shadow-[0px_13px_23px_-11px_rgba(0,0,0,0.41)]"} bg-[#242424b2] backdrop-blur ${atTop && "bg-inherit"} `}
       >
-        <h3 className="h-full content-center p-2 text-xl hover:text-green-300">
+        <h3 className="h-full content-center p-2 text-xl hover:text-[#adddbe]">
           <Link
             className="cursor-pointer"
             to="hero"
@@ -83,7 +83,7 @@ const NavBar = () => {
           </Link>
         </h3>
         <ul className="hidden h-full w-80 items-center justify-between p-2 md:flex">
-          <li className="hover:text-green-300">
+          <li className="hover:text-[#adddbe]">
             <Link
               className="cursor-pointer p-2"
               to="about"
@@ -97,7 +97,7 @@ const NavBar = () => {
               About
             </Link>
           </li>
-          <li className="hover:text-green-300">
+          <li className="hover:text-[#adddbe]">
             <Link
               className="cursor-pointer p-2"
               to="projects"
@@ -111,7 +111,7 @@ const NavBar = () => {
               Projects
             </Link>
           </li>
-          <li className="hover:text-green-300">
+          <li className="hover:text-[#adddbe]">
             <Link
               className="cursor-pointer p-2"
               to="contact"
@@ -130,7 +130,7 @@ const NavBar = () => {
       {!atTop && (
         <div className="fixed bottom-1 right-2 z-50 rounded bg-[#242424] p-3 md:right-5">
           <Link to="hero" smooth={true} offset={-300} duration={1000}>
-            <SlArrowUp className="size-5 transition-all duration-300 hover:-translate-y-1 hover:fill-green-600 md:size-6" />
+            <SlArrowUp className="size-5 transition-all duration-300 hover:-translate-y-1 hover:text-[#adddbe] md:size-6" />
           </Link>
         </div>
       )}
@@ -152,7 +152,7 @@ const NavBar = () => {
         className={`fixed bottom-0 right-0 top-0 z-50 w-96 content-center bg-gray-900 transition-all duration-300 ease-in-out md:hidden ${isOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         <ul className="flex cursor-pointer flex-col items-center justify-evenly gap-8">
-          <li className="flex w-full text-center hover:text-green-300">
+          <li className="flex w-full text-center hover:text-[#adddbe]">
             <Link
               className="w-full p-3"
               to="about"
@@ -166,7 +166,7 @@ const NavBar = () => {
               About
             </Link>
           </li>
-          <li className="flex w-full text-center hover:text-green-300">
+          <li className="flex w-full text-center hover:text-[#adddbe]">
             <Link
               className="w-full p-3"
               to="projects"
@@ -180,7 +180,7 @@ const NavBar = () => {
               Projects
             </Link>
           </li>
-          <li className="flex w-full text-center hover:text-green-300">
+          <li className="flex w-full text-center hover:text-[#adddbe]">
             <Link
               className="w-full p-3"
               to="contact"

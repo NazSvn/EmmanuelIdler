@@ -32,7 +32,7 @@ export default {
               width: "60%",
             },
             "&:hover": {
-              color: "#BFDBFE",
+              color: " #adddbe",
             },
           },
         },

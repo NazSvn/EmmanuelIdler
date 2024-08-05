@@ -1,13 +1,11 @@
-import { FaGithubSquare } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa6";
-import { TbMailFilled } from "react-icons/tb";
+import { TbBrandGithub, TbMail, TbBrandLinkedin } from "react-icons/tb";
 
 const Contact = () => {
   return (
     <>
       <div
         id="contact"
-        className="container mx-auto min-h-screen content-center text-center"
+        className="mx-auto mt-40 h-[80dvh] content-center text-center"
       >
         <h2 className="mb-4 text-5xl font-bold">Find me here</h2>
         <div className="d flex h-20 items-center justify-center">
@@ -18,7 +16,7 @@ const Contact = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaGithubSquare className="m-1 inline size-11 cursor-pointer transition-all hover:size-12" />
+              <TbBrandGithub className="m-1 inline size-11 cursor-pointer transition-all hover:size-12" />
             </a>
           </span>
           <span className="w-20">
@@ -27,7 +25,7 @@ const Contact = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <TbMailFilled className="m-1 inline size-12 cursor-pointer transition-all hover:size-14" />
+              <TbMail className="m-1 inline size-12 cursor-pointer transition-all hover:size-14" />
             </a>{" "}
           </span>
           <span className="w-20">
@@ -36,7 +34,7 @@ const Contact = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaLinkedin className="m-1 inline size-11 cursor-pointer transition-all hover:size-12" />
+              <TbBrandLinkedin className="m-1 inline size-11 cursor-pointer transition-all hover:size-12" />
             </a>
           </span>
         </div>
