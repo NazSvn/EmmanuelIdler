@@ -6,13 +6,13 @@ const ProjectTile = () => {
   return (
     <>
       <div className="mx-auto w-4/5 max-w-4xl sm:w-4/5">
-        <h1 className="mb-5 text-5xl font-bold">projects</h1>
+        <h1 className="mb-9 text-5xl font-bold">projects</h1>
         {projects.map((project, index) => {
           return (
             <div key={index}>
               <div
                 id="projects"
-                className="relative mx-auto mb-5 grid h-96 grid-cols-12 items-center"
+                className="relative mx-auto mb-7 grid h-96 grid-cols-12 items-center"
               >
                 <div
                   className={`col-span-12 shadow-lg shadow-[#00000033] ${index % 2 ? "absolute md:col-span-7 md:col-end-13" : "absolute md:col-span-7 md:col-start-1"}`}

@@ -4,11 +4,15 @@ const Hero = () => {
   return (
     <div
       id="hero"
-      className="mx-auto mt-60 flex max-w-4xl content-center p-3 sm:border-red-300 md:mt-72"
+      className="mx-auto mt-60 flex w-4/5 max-w-4xl content-center p-3 sm:border-red-300 md:mt-72"
     >
       <div className="mx-auto">
-        <h1 className="mb-5 text-8xl font-bold text-white">Emmanuel Idler</h1>
-        <h1 className="mb-5 text-7xl font-bold">Front-End Developer.</h1>
+        <h1 className="mb-5 text-7xl font-bold text-white md:text-8xl">
+          Emmanuel Idler
+        </h1>
+        <h1 className="mb-5 text-6xl font-bold md:text-7xl">
+          Front-End Developer.
+        </h1>
         <p className="max-w-2xl text-wrap">
           Hi! I&apos;m a Junior Front-End Developer with a strong passion for
           creating beautiful, responsive, and user-friendly web applications.

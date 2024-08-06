@@ -102,7 +102,7 @@ const NavBar = () => {
               className="cursor-pointer p-2"
               to="projects"
               smooth={true}
-              offset={-50}
+              offset={-100}
               duration={1000}
               activeClass="active"
               spy={true}
