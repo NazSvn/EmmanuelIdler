@@ -5,7 +5,7 @@ import projects from "../data/projects.json";
 const ProjectTile = () => {
   return (
     <>
-      <div className="mx-auto w-4/5 max-w-4xl sm:w-4/5">
+      <div className="mx-auto w-4/5 max-w-4xl">
         <h1 className="mb-9 text-5xl font-bold">projects</h1>
         {projects.map((project, index) => {
           return (
