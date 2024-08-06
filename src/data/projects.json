@@ -4,25 +4,25 @@
     "images": {
       "avif": {
         "srcset": {
-          "175w": "../src/assets/images/amazon175.avif",
-          "350w": "../src/assets/images/amazon350.avif",
-          "700w": "../src/assets/images/amazon700.avif"
+          "175w": "../public/images/amazon175.avif",
+          "350w": "../public/images/amazon350.avif",
+          "700w": "../public/images/amazon700.avif"
         },
         "sizes": "(min-width: 700px) 700px, 100vw"
       },
       "webp": {
         "srcset": {
-          "175w": "../src/assets/images/amazon175.webp",
-          "350w": "../src/assets/images/amazon350.webp",
-          "700w": "../src/assets/images/amazon700.webp"
+          "175w": "../public/images/amazon175.webp",
+          "350w": "../public/images/amazon350.webp",
+          "700w": "../public/images/amazon700.webp"
         },
         "sizes": "(min-width: 700px) 700px, 100vw"
       },
       "png": {
         "srcset": {
-          "175w": "../src/assets/images/amazon175.png",
-          "350w": "../src/assets/images/amazon350.png",
-          "700w": "../src/assets/images/amazon700.png"
+          "175w": "../public/images/amazon175.png",
+          "350w": "../public/images/amazon350.png",
+          "700w": "../public/images/amazon700.png"
         },
         "sizes": "(min-width: 700px) 700px, 100vw"
       }
@@ -37,25 +37,25 @@
     "images": {
       "avif": {
         "srcset": {
-          "175w": "../src/assets/images/poke175.avif",
-          "350w": "../src/assets/images/poke350.avif",
-          "700w": "../src/assets/images/poke700.avif"
+          "175w": "../public/images/poke175.avif",
+          "350w": "../public/images/poke350.avif",
+          "700w": "../public/images/poke700.avif"
         },
         "sizes": "(min-width: 700px) 700px, 100vw"
       },
       "webp": {
         "srcset": {
-          "175w": "../src/assets/images/poke175.webp",
-          "350w": "../src/assets/images/poke350.webp",
-          "700w": "../src/assets/images/poke700.webp"
+          "175w": "../public/images/poke175.webp",
+          "350w": "../public/images/poke350.webp",
+          "700w": "../public/images/poke700.webp"
         },
         "sizes": "(min-width: 700px) 700px, 100vw"
       },
       "png": {
         "srcset": {
-          "175w": "../src/assets/images/poke175.png",
-          "350w": "../src/assets/images/poke350.png",
-          "700w": "../src/assets/images/poke700.png"
+          "175w": "../public/images/poke175.png",
+          "350w": "../public/images/poke350.png",
+          "700w": "../public/images/poke700.png"
         },
         "sizes": "(min-width: 700px) 700px, 100vw"
       }
@@ -70,25 +70,25 @@
     "images": {
       "avif": {
         "srcset": {
-          "175w": "../src/assets/images/tenzies175.avif",
-          "350w": "../src/assets/images/tenzies350.avif",
-          "700w": "../src/assets/images/tenzies700.avif"
+          "175w": "../public/images/tenzies175.avif",
+          "350w": "../public/images/tenzies350.avif",
+          "700w": "../public/images/tenzies700.avif"
         },
         "sizes": "(min-width: 700px) 700px, 100vw"
       },
       "webp": {
         "srcset": {
-          "175w": "../src/assets/images/tenzies175.webp",
-          "350w": "../src/assets/images/tenzies350.webp",
-          "700w": "../src/assets/images/tenzies700.webp"
+          "175w": "../public/images/tenzies175.webp",
+          "350w": "../public/images/tenzies350.webp",
+          "700w": "../public/images/tenzies700.webp"
         },
         "sizes": "(min-width: 700px) 700px, 100vw"
       },
       "png": {
         "srcset": {
-          "175w": "../src/assets/images/tenzies175.png",
-          "350w": "../src/assets/images/tenzies350.png",
-          "700w": "../src/assets/images/tenzies700.png"
+          "175w": "../public/images/tenzies175.png",
+          "350w": "../public/images/tenzies350.png",
+          "700w": "../public/images/tenzies700.png"
         },
         "sizes": "(min-width: 700px) 700px, 100vw"
       }
@@ -103,25 +103,25 @@
     "images": {
       "avif": {
         "srcset": {
-          "175w": "../src/assets/images/landing175.avif",
-          "350w": "../src/assets/images/landing350.avif",
-          "700w": "../src/assets/images/landing700.avif"
+          "175w": "../public/images/landing175.avif",
+          "350w": "../public/images/landing350.avif",
+          "700w": "../public/images/landing700.avif"
         },
         "sizes": "(min-width: 700px) 700px, 100vw"
       },
       "webp": {
         "srcset": {
-          "175w": "../src/assets/images/landing175.webp",
-          "350w": "../src/assets/images/landing350.webp",
-          "700w": "../src/assets/images/landing700.webp"
+          "175w": "../public/images/landing175.webp",
+          "350w": "../public/images/landing350.webp",
+          "700w": "../public/images/landing700.webp"
         },
         "sizes": "(min-width: 700px) 700px, 100vw"
       },
       "png": {
         "srcset": {
-          "175w": "../src/assets/images/landing175.png",
-          "350w": "../src/assets/images/landing350.png",
-          "700w": "../src/assets/images/landing700.png"
+          "175w": "../public/images/landing175.png",
+          "350w": "../public/images/landing350.png",
+          "700w": "../public/images/landing700.png"
         },
         "sizes": "(min-width: 700px) 700px, 100vw"
       }
