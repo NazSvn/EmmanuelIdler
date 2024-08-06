@@ -4,10 +4,10 @@ const About = () => {
   return (
     <div
       id="about"
-      className="container mx-auto h-screen max-w-4xl content-center px-5"
+      className="mx-auto h-screen w-4/5 max-w-4xl content-center sm:w-4/5"
     >
       <h1 className="mb-5 text-5xl font-bold">About me</h1>
-      <div className="container flex gap-3 max-sm:flex-col">
+      <div className="flex gap-3 max-sm:flex-col">
         <p className="mr-4 w-3/5 text-wrap leading-relaxed max-sm:w-auto">
           Hi! I&apos;m Emmanuel Idler, a Junior Front-End Developer with a
           strong passion for continuously learn and grow, both professionally

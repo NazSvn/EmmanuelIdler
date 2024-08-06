@@ -10,7 +10,6 @@ const Contact = () => {
         <h2 className="mb-4 text-5xl font-bold">Find me here</h2>
         <div className="d flex h-20 items-center justify-center">
           <span className="w-20">
-            {" "}
             <a
               href="https://github.com/NazSvn"
               target="_blank"
@@ -26,7 +25,7 @@ const Contact = () => {
               rel="noopener noreferrer"
             >
               <TbMail className="m-1 inline size-12 cursor-pointer transition-all hover:size-14" />
-            </a>{" "}
+            </a>
           </span>
           <span className="w-20">
             <a

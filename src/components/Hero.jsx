@@ -4,7 +4,7 @@ const Hero = () => {
   return (
     <div
       id="hero"
-      className="mx-auto mt-60 flex max-w-4xl content-center p-2 sm:border-red-300 md:mt-72"
+      className="mx-auto mt-60 flex max-w-4xl content-center p-3 sm:border-red-300 md:mt-72"
     >
       <div className="mx-auto">
         <h1 className="mb-5 text-8xl font-bold text-white">Emmanuel Idler</h1>
