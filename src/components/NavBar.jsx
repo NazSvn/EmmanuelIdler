@@ -66,136 +66,137 @@ const NavBar = () => {
 
   return (
     <>
-      <nav
-        id="navBar"
-        className={`fixed left-0 right-0 top-0 z-50 flex h-16 items-center justify-between px-4 ${!isShown && "-translate-y-full"} delay-75 duration-300 ${atTop || !isShown ? "shadow-none" : "shadow-[0px_13px_23px_-11px_rgba(0,0,0,0.41)]"} bg-[#242424b2] backdrop-blur ${atTop && "bg-inherit"} `}
-      >
-        <h3 className="h-full content-center p-2 text-xl hover:text-[#adddbe]">
-          <Link
-            className="cursor-pointer"
-            to="hero"
-            smooth={true}
-            offset={-400}
-            duration={1000}
-          >
-            {" "}
-            Emmanuel Idler
-          </Link>
-        </h3>
-        <ul className="hidden h-full w-80 items-center justify-between p-2 md:flex">
-          <li className="hover:text-[#adddbe]">
+      <header id="header">
+        <nav
+          id="navBar"
+          className={`fixed left-0 right-0 top-0 z-50 flex h-16 items-center justify-between px-4 text-[hsl(0,0%,100%)] ${!isShown && "-translate-y-full"} delay-75 duration-300 ${atTop || !isShown ? "shadow-none" : "shadow-[0px_13px_23px_-11px_rgba(0,0,0,0.41)]"} bg-[#153131] backdrop-blur ${atTop && "bg-inherit"} `}
+        >
+          <h3 className="h-full content-center p-2 text-[22px] text-[#70D7A1] transition-all duration-300 ease-out hover:text-white">
             <Link
-              className="cursor-pointer p-2"
-              to="about"
+              className="cursor-pointer"
+              to="hero"
               smooth={true}
-              offset={0}
+              offset={-400}
               duration={1000}
-              activeClass="active"
-              spy={true}
-              onClick={toggleNavBar}
             >
-              About
+              Emmanuel Idler
             </Link>
-          </li>
-          <li className="hover:text-[#adddbe]">
-            <Link
-              className="cursor-pointer p-2"
-              to="projects"
-              smooth={true}
-              offset={-100}
-              duration={1000}
-              activeClass="active"
-              spy={true}
-              onClick={toggleNavBar}
-            >
-              Projects
+          </h3>
+          <ul className="hidden h-full w-80 items-center justify-between p-2 md:flex">
+            <li className="transition-all duration-300 ease-out hover:text-[#45CB85]">
+              <Link
+                className="cursor-pointer p-2"
+                to="about"
+                smooth={true}
+                offset={-200}
+                duration={1000}
+                activeClass="active"
+                spy={true}
+                onClick={toggleNavBar}
+              >
+                About
+              </Link>
+            </li>
+            <li className="transition-all duration-300 ease-out hover:text-[#45CB85]">
+              <Link
+                className="cursor-pointer p-2"
+                to="projects"
+                smooth={true}
+                offset={-100}
+                duration={1000}
+                activeClass="active"
+                spy={true}
+                onClick={toggleNavBar}
+              >
+                Projects
+              </Link>
+            </li>
+            <li className="transition-all duration-300 ease-out hover:text-[#45CB85]">
+              <Link
+                className="cursor-pointer p-2"
+                to="contact"
+                smooth={true}
+                offset={-100}
+                duration={1000}
+                activeClass="active"
+                spy={true}
+                onClick={toggleNavBar}
+              >
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </nav>
+        {!atTop && (
+          <div className="fixed bottom-1 right-2 z-50 rounded bg-[#24242498] p-3 md:right-5">
+            <Link to="hero" smooth={true} offset={-300} duration={1000}>
+              <SlArrowUp className="size-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:text-[#45CB85] md:size-5" />
             </Link>
-          </li>
-          <li className="hover:text-[#adddbe]">
-            <Link
-              className="cursor-pointer p-2"
-              to="contact"
-              smooth={true}
-              offset={-50}
-              duration={1000}
-              activeClass="active"
-              spy={true}
-              onClick={toggleNavBar}
-            >
-              Contact
-            </Link>
-          </li>
-        </ul>
-      </nav>
-      {!atTop && (
-        <div className="fixed bottom-1 right-2 z-50 rounded bg-[#242424] p-3 md:right-5">
-          <Link to="hero" smooth={true} offset={-300} duration={1000}>
-            <SlArrowUp className="size-5 transition-all duration-300 hover:-translate-y-1 hover:text-[#adddbe] md:size-6" />
-          </Link>
-        </div>
-      )}
+          </div>
+        )}
 
-      <div
-        className={`fixed right-5 top-6 z-[52] md:hidden ${!isShown && "-translate-y-12"} delay-75 duration-300`}
-      >
-        <button onClick={toggleMenu}>
-          {isOpen ? (
-            <FiX className="size-7 -translate-x-3" />
-          ) : (
-            <SlMenu className="size-6" />
-          )}
-        </button>
-      </div>
-      <div
-        id="burgerNav"
-        ref={burgerNavRef}
-        className={`fixed bottom-0 right-0 top-0 z-50 w-96 content-center bg-gray-900 transition-all duration-300 ease-in-out md:hidden ${isOpen ? "translate-x-0" : "translate-x-full"}`}
-      >
-        <ul className="flex cursor-pointer flex-col items-center justify-evenly gap-8">
-          <li className="flex w-full text-center hover:text-[#adddbe]">
-            <Link
-              className="w-full p-3"
-              to="about"
-              smooth={true}
-              offset={-50}
-              duration={1000}
-              activeClass="active"
-              spy={true}
-              onClick={toggleMenu}
-            >
-              About
-            </Link>
-          </li>
-          <li className="flex w-full text-center hover:text-[#adddbe]">
-            <Link
-              className="w-full p-3"
-              to="projects"
-              smooth={true}
-              offset={-50}
-              duration={1000}
-              activeClass="active"
-              spy={true}
-              onClick={toggleMenu}
-            >
-              Projects
-            </Link>
-          </li>
-          <li className="flex w-full text-center hover:text-[#adddbe]">
-            <Link
-              className="w-full p-3"
-              to="contact"
-              smooth={true}
-              offset={-50}
-              duration={1000}
-              activeClass="active"
-              spy={true}
-              onClick={toggleMenu}
-            >
-              Contact
-            </Link>
-          </li>
-        </ul>
-      </div>
+        <div
+          className={`fixed right-5 top-6 z-[52] md:hidden ${!isShown && "-translate-y-12"} delay-75 duration-300`}
+        >
+          <button onClick={toggleMenu}>
+            {isOpen ? (
+              <FiX className="size-7 -translate-x-3" />
+            ) : (
+              <SlMenu className="size-6" />
+            )}
+          </button>
+        </div>
+        <div
+          id="burgerNav"
+          ref={burgerNavRef}
+          className={`fixed bottom-0 right-0 top-0 z-50 w-96 content-center bg-gray-900 transition-all duration-300 ease-in-out md:hidden ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+        >
+          <ul className="flex cursor-pointer flex-col items-center justify-evenly gap-8">
+            <li className="flex w-full text-center transition-all duration-300 ease-out hover:text-[#45CB85]">
+              <Link
+                className="w-full p-3"
+                to="about"
+                smooth={true}
+                offset={-50}
+                duration={1000}
+                activeClass="active"
+                spy={true}
+                onClick={toggleMenu}
+              >
+                About
+              </Link>
+            </li>
+            <li className="flex w-full text-center transition-all duration-300 ease-out hover:text-[#45CB85]">
+              <Link
+                className="w-full p-3"
+                to="projects"
+                smooth={true}
+                offset={-50}
+                duration={1000}
+                activeClass="active"
+                spy={true}
+                onClick={toggleMenu}
+              >
+                Projects
+              </Link>
+            </li>
+            <li className="flex w-full text-center transition-all duration-300 ease-out hover:text-[#45CB85]">
+              <Link
+                className="w-full p-3"
+                to="contact"
+                smooth={true}
+                offset={-100}
+                duration={1000}
+                activeClass="active"
+                spy={true}
+                onClick={toggleMenu}
+              >
+                Contact
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </header>
     </>
   );
 };
