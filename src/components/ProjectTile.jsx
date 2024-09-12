@@ -1,6 +1,8 @@
 import { TbBrandGithub } from "react-icons/tb";
 import { FiExternalLink } from "react-icons/fi";
 import projects from "../data/projects.json";
+import { useContext } from "react";
+import { GlobalContext } from "../context";
 
 const highlightWords = (text, wordsToHighlight) => {
   return text
@@ -17,6 +19,20 @@ const highlightWords = (text, wordsToHighlight) => {
 };
 
 const ProjectTile = () => {
+  const { showTooltip, setShowTooltip } = useContext(GlobalContext);
+  let timeOutId;
+
+  const handleMouseEnter = (icon, index) => {
+    timeOutId = setTimeout(() => {
+      setShowTooltip({ icon, index });
+    }, 1000);
+  };
+
+  const handleMouseLeave = () => {
+    setShowTooltip(null);
+    clearTimeout(timeOutId);
+  };
+
   return (
     <>
       <section id="projects" className="pt-24 md:pt-28">
@@ -84,7 +100,7 @@ const ProjectTile = () => {
                         </h3>
                       </a>
                       <div>
-                        <p className="pointer-events-auto mb-4 cursor-default rounded-md bg-[#153131] p-4 text-sm">
+                        <p className="pointer-events-auto mb-4 cursor-default rounded-md bg-[#153131] p-4">
                           {highlightWords(
                             project.description,
                             project.wordsTohigHlight,
@@ -106,20 +122,39 @@ const ProjectTile = () => {
                           );
                         })}
                       </ul>
-                      <div className=" ">
+                      <div>
                         <a
                           href={project.code}
                           target="_blank"
                           rel="noopener noreferrer"
+                          className="relative"
+                          onMouseEnter={() => handleMouseEnter("git", index)}
+                          onMouseLeave={handleMouseLeave}
                         >
                           <TbBrandGithub className="pointer-events-auto m-1 inline size-6 cursor-pointer transition-all hover:text-[#45CB85]" />
+                          {showTooltip?.icon === "git" &&
+                            showTooltip?.index === index && (
+                              <span className="absolute -bottom-6 left-7 mb-2 rounded border bg-black px-2 py-1 text-xs text-white opacity-100">
+                                Github
+                              </span>
+                            )}
                         </a>
+
                         <a
                           href={project.href}
                           target="_blank"
                           rel="noopener noreferrer"
+                          className="relative"
+                          onMouseEnter={() => handleMouseEnter("link", index)}
+                          onMouseLeave={handleMouseLeave}
                         >
                           <FiExternalLink className="pointer-events-auto m-1 inline size-6 cursor-pointer transition-all hover:text-[#45CB85]" />
+                          {showTooltip?.icon === "link" &&
+                            showTooltip?.index === index && (
+                              <span className="absolute -bottom-6 left-7 mb-2 text-nowrap rounded border bg-black px-2 py-1 text-xs text-white opacity-100">
+                                External link
+                              </span>
+                            )}
                         </a>
                       </div>
                     </div>

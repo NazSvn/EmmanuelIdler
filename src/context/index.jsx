@@ -7,6 +7,7 @@ export default function GlobalState({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isShown, setIsShown] = useState(true);
   const [atTop, setAtTop] = useState(true);
+  const [showTooltip, setShowTooltip] = useState(null);
 
   return (
     <GlobalContext.Provider
@@ -17,6 +18,8 @@ export default function GlobalState({ children }) {
         setIsShown,
         atTop,
         setAtTop,
+        showTooltip,
+        setShowTooltip,
       }}
     >
       {children}
