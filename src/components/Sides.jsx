@@ -17,6 +17,7 @@ const Contact = () => {
     setShowTooltip(null);
     clearTimeout(timeOutId);
   };
+  
   useEffect(() => {
     const timeout = setTimeout(() => {
       setFirstLoad(false);
