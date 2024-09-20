@@ -5,15 +5,35 @@ import { GlobalContext } from "../context";
 import { FiX } from "react-icons/fi";
 
 const NavBar = () => {
-  const { isOpen, setIsOpen, isShown, setIsShown, atTop, setAtTop } =
-    useContext(GlobalContext);
+  const {
+    isOpen,
+    setIsOpen,
+    isShown,
+    setIsShown,
+    atTop,
+    setAtTop,
+    firstLoad,
+    setFirstLoad,
+    currentSection,
+  } = useContext(GlobalContext);
   const burgerNavRef = useRef(null);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-  const toggleNavBar = () => {
-    setIsShown(!isShown);
+
+  const toggleNavBar = (targetId) => {
+    const targetElement = document.getElementById(targetId);
+
+    if (targetElement) {
+      const targetPosition =
+        targetElement.getBoundingClientRect().top + window.scrollY;
+      const currentScrollPosition = window.scrollY;
+
+      if (targetPosition > currentScrollPosition) {
+        setIsShown(false);
+      }
+    } 
   };
 
   const handleClickOutside = (e) => {
@@ -64,63 +84,96 @@ const NavBar = () => {
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setFirstLoad(false);
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <>
       <header id="header">
         <nav
           id="navBar"
-          className={`fixed left-0 right-0 top-0 z-50 flex h-16 items-center justify-between px-4 text-[hsl(0,0%,100%)] ${!isShown && "-translate-y-full"} delay-75 duration-300 ${atTop || !isShown ? "shadow-none" : "shadow-[0px_13px_23px_-11px_rgba(0,0,0,0.41)]"} bg-[#153131] backdrop-blur ${atTop && "bg-inherit"} `}
+          className={`fixed left-0 right-0 top-0 z-50 flex h-16 items-center justify-between px-4 text-[hsl(0,0%,100%)] ${!isShown && "-translate-y-full"} delay-75 duration-300 ${atTop || !isShown ? "shadow-none" : "shadow-[0px_13px_23px_-11px_rgba(0,0,0,0.41)]"} bg-[rgba(21,49,49,0.85)] backdrop-blur`}
         >
-          <h3 className="h-full content-center p-2 text-[22px] text-[#70D7A1] transition-all duration-300 ease-out hover:text-white">
+          <h3
+            className={`transform transition ${
+              firstLoad
+                ? "translate-x-[-100%] opacity-0"
+                : "translate-x-0 opacity-100"
+            } delay-200 duration-500 ease-in-out`}
+          >
             <Link
-              className="cursor-pointer"
+              className={`h-full cursor-pointer content-center p-2 text-[22px] text-[#70D7A1] transition-all duration-300 ease-out hover:text-white`}
               to="hero"
               smooth={true}
               offset={-400}
               duration={1000}
+              onClick={() => toggleNavBar("hero")}
             >
               Emmanuel Idler
             </Link>
           </h3>
           <ul className="hidden h-full w-80 items-center justify-between p-2 md:flex">
-            <li className="transition-all duration-300 ease-out hover:text-[#45CB85]">
+            <li
+              className={`transform transition ${
+                firstLoad
+                  ? "translate-y-[-100%] opacity-0"
+                  : "translate-y-0 opacity-100"
+              } delay-200 duration-500 ease-in-out`}
+            >
               <Link
-                className="cursor-pointer p-2"
+                className={`cursor-pointer p-2 text-xs transition-all duration-300 ease-out hover:text-[#45CB85] ${
+                  currentSection === "about" && currentSection !== ""
+                    ? "active"
+                    : ""
+                }`}
                 to="about"
                 smooth={true}
-                offset={-200}
+                offset={-80}
                 duration={1000}
-                activeClass="active"
-                spy={true}
-                onClick={toggleNavBar}
+                onClick={() => toggleNavBar("about")}
               >
                 About
               </Link>
             </li>
-            <li className="transition-all duration-300 ease-out hover:text-[#45CB85]">
+            <li
+              className={`transform transition ${
+                firstLoad
+                  ? "translate-y-[-100%] opacity-0"
+                  : "translate-y-0 opacity-100"
+              } delay-[400ms] duration-500 ease-in-out`}
+            >
               <Link
-                className="cursor-pointer p-2"
+                className={`cursor-pointer p-2 text-xs transition-all duration-300 ease-out hover:text-[#45CB85] ${
+                  currentSection === "projects" ? "active" : ""
+                }`}
                 to="projects"
                 smooth={true}
-                offset={-100}
                 duration={1000}
-                activeClass="active"
-                spy={true}
-                onClick={toggleNavBar}
+                onClick={() => toggleNavBar("projects")}
               >
                 Projects
               </Link>
             </li>
-            <li className="transition-all duration-300 ease-out hover:text-[#45CB85]">
+            <li
+              className={`transform transition ${
+                firstLoad
+                  ? "translate-y-[-100%] opacity-0"
+                  : "translate-y-0 opacity-100"
+              } delay-[600ms] duration-500 ease-in-out`}
+            >
               <Link
-                className="cursor-pointer p-2"
+                className={`cursor-pointer p-2 text-xs transition-all duration-300 ease-out hover:text-[#45CB85] ${
+                  currentSection === "contact" ? "active" : ""
+                }`}
                 to="contact"
                 smooth={true}
-                offset={-100}
+                offset={-50}
                 duration={1000}
-                activeClass="active"
-                spy={true}
-                onClick={toggleNavBar}
+                onClick={() => toggleNavBar("contact")}
               >
                 Contact
               </Link>

@@ -8,6 +8,8 @@ export default function GlobalState({ children }) {
   const [isShown, setIsShown] = useState(true);
   const [atTop, setAtTop] = useState(true);
   const [showTooltip, setShowTooltip] = useState(null);
+  const [firstLoad, setFirstLoad] = useState(true);
+  const [currentSection, setCurrentSection] = useState("");
 
   return (
     <GlobalContext.Provider
@@ -20,6 +22,10 @@ export default function GlobalState({ children }) {
         setAtTop,
         showTooltip,
         setShowTooltip,
+        firstLoad,
+        setFirstLoad,
+        currentSection,
+        setCurrentSection,
       }}
     >
       {children}

@@ -1,9 +1,51 @@
 import { RiArrowDropRightLine } from "react-icons/ri";
+import { useContext, useEffect, useRef } from "react";
+import { GlobalContext } from "../context";
+import useIntersectionObserver from "./utils/useIntersectionObserver";
 
 const About = () => {
+  const { setCurrentSection } = useContext(GlobalContext);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setCurrentSection("about");
+        }
+      },
+      { threshold: 0.5 },
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [setCurrentSection]);
+
+  const [ref, isVisible, scrollDirection] = useIntersectionObserver({
+    threshold: 0.25,
+  });
+
   return (
-    <section id="about" className="mb-40 pt-24 md:pt-28">
-      <div className="mx-auto w-4/5 max-w-4xl content-center sm:w-4/5">
+    <section id="about" ref={sectionRef} className="mb-40 pt-24 md:pt-28">
+      <div
+        ref={ref}
+        className={`relative mx-auto w-4/5 max-w-4xl content-center sm:w-4/5 ${
+          scrollDirection === "down"
+            ? `transform transition duration-1000 ease-in-out ${
+                isVisible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-20 opacity-0"
+              }`
+            : ""
+        }`}
+      >
         <h1 className="mb-5 text-4xl font-bold text-[#45CB85] md:text-[40px]">
           About me
         </h1>
@@ -24,7 +66,17 @@ const About = () => {
             Feel free to check out my projects and get in touch if you&apos;d
             like to collaborate or have any questions!
           </p>
-          <div className="w-2/5 ps-3 max-sm:w-auto">
+          <div
+            className={`relative w-2/5 ps-3 max-sm:w-auto ${
+              scrollDirection === "down"
+                ? `transform transition delay-150 duration-1000 ease-in-out ${
+                    isVisible
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-20 opacity-0"
+                  }`
+                : ""
+            }`}
+          >
             <p className="mb-2 text-[#45CB85]">
               Technologies I&apos;ve worked with recently:
             </p>

@@ -1,8 +1,9 @@
 import { TbBrandGithub } from "react-icons/tb";
 import { FiExternalLink } from "react-icons/fi";
 import projects from "../data/projects.json";
-import { useContext } from "react";
+import { useContext, useRef, useEffect } from "react";
 import { GlobalContext } from "../context";
+import useIntersectionObserver from "./utils/useIntersectionObserver";
 
 const highlightWords = (text, wordsToHighlight) => {
   return text
@@ -19,7 +20,9 @@ const highlightWords = (text, wordsToHighlight) => {
 };
 
 const ProjectTile = () => {
-  const { showTooltip, setShowTooltip } = useContext(GlobalContext);
+  const { showTooltip, setShowTooltip, setCurrentSection } =
+    useContext(GlobalContext);
+
   let timeOutId;
 
   const handleMouseEnter = (icon, index) => {
@@ -33,17 +36,56 @@ const ProjectTile = () => {
     clearTimeout(timeOutId);
   };
 
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setCurrentSection("projects");
+        }
+      },
+      { root: null, rootMargin: "0px", threshold: [0.25] },
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, [setCurrentSection]);
+
   return (
     <>
-      <section id="projects" className="pt-24 md:pt-28">
+      <section id="projects" ref={sectionRef} className="pt-24 md:pt-28">
         <div className="mx-auto w-4/5 max-w-4xl">
           <h1 className="mb-9 text-4xl font-bold text-[#45CB85] md:text-[40px]">
             projects
           </h1>
           {projects.map((project, index) => {
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            const [ref, isVisible, scrollDirection] = useIntersectionObserver({
+              threshold: 0.2,
+            });
             return (
-              <div key={index}>
-                <div className="relative mx-auto mb-7 grid h-96 grid-cols-12 items-center">
+              <div
+                key={index}
+                ref={ref}
+                className={`relative ${
+                  scrollDirection === "down"
+                    ? `transform transition duration-1000 ease-in-out ${
+                        isVisible
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-20 opacity-0"
+                      }`
+                    : ""
+                }`}
+              >
+                <div className="relative mx-auto mb-24 h-[400px] grid sm:h-96 items-center sm:mb-14 sm:grid-cols-12 md:mb-7">
                   <div
                     className={`col-span-12 md:shadow-lg md:shadow-[#00000033] ${index % 2 ? "absolute md:col-span-7 md:col-end-13" : "absolute md:col-span-7 md:col-start-1"}`}
                   >
@@ -51,8 +93,10 @@ const ProjectTile = () => {
                       href={project.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group relative inset-0 h-full w-full transition-all duration-300 ease-in-out before:absolute before:left-0 before:top-0 before:z-[3] before:h-full before:w-full before:rounded-md before:bg-[#153131] before:mix-blend-screen before:transition-opacity before:duration-300 group-hover:before:opacity-0"
+                      className="group relative"
                     >
+                      <div className="group absolute inset-0 left-0 top-0 z-[3] h-full w-full rounded-md bg-[#153131] mix-blend-multiply transition-opacity duration-300 ease-in-out before:absolute before:h-full before:w-full before:rounded-md before:bg-[#4bdd92b0] before:mix-blend-screen group-hover:opacity-0"></div>
+
                       <div className="mix-blend-overlay brightness-100 contrast-100 grayscale transition-all duration-300 ease-in-out group-hover:mix-blend-normal group-hover:filter-none">
                         <picture>
                           <source
@@ -122,7 +166,7 @@ const ProjectTile = () => {
                           );
                         })}
                       </ul>
-                      <div>
+                      <div className="h-7">
                         <a
                           href={project.code}
                           target="_blank"
@@ -134,7 +178,7 @@ const ProjectTile = () => {
                           <TbBrandGithub className="pointer-events-auto m-1 inline size-6 cursor-pointer transition-all hover:text-[#45CB85]" />
                           {showTooltip?.icon === "git" &&
                             showTooltip?.index === index && (
-                              <span className="absolute -bottom-6 left-7 mb-2 rounded border bg-black px-2 py-1 text-xs text-white opacity-100">
+                              <span className="absolute -bottom-10 left-6 mb-2 rounded border bg-black px-2 py-1 text-xs text-white opacity-100">
                                 Github
                               </span>
                             )}
@@ -151,7 +195,7 @@ const ProjectTile = () => {
                           <FiExternalLink className="pointer-events-auto m-1 inline size-6 cursor-pointer transition-all hover:text-[#45CB85]" />
                           {showTooltip?.icon === "link" &&
                             showTooltip?.index === index && (
-                              <span className="absolute -bottom-6 left-7 mb-2 text-nowrap rounded border bg-black px-2 py-1 text-xs text-white opacity-100">
+                              <span className="absolute -bottom-10 left-6 mb-2 text-nowrap rounded border bg-black px-2 py-1 text-xs text-white opacity-100">
                                 External link
                               </span>
                             )}
