@@ -17,7 +17,7 @@ const Contact = () => {
     setShowTooltip(null);
     clearTimeout(timeOutId);
   };
-  
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       setFirstLoad(false);
@@ -30,7 +30,7 @@ const Contact = () => {
       <div
         className={`invisible fixed bottom-0 left-5 w-10 transform content-center text-center transition md:visible lg:left-10 ${
           firstLoad ? "opacity-0" : "opacity-100"
-        } delay-700 duration-700 ease-in-out`}
+        } delay-1000 duration-700 ease-in-out`}
       >
         <ul className="flex flex-col items-center justify-center text-[#e1e0e0d2] after:mx-0 after:my-auto after:block after:h-[100px] after:w-[1px] after:bg-[#45CB85]">
           <li className="relative mb-4">
