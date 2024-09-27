@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef } from "react";
 import { SlArrowUp, SlMenu } from "react-icons/sl";
-import { Link } from "react-scroll";
+import { Link, scroller } from "react-scroll";
 import { GlobalContext } from "../context";
 import { FiX } from "react-icons/fi";
 
@@ -19,48 +19,6 @@ const NavBar = () => {
 
   const burgerNavRef = useRef(null);
   const prevScrollY = useRef(window.scrollY);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const toggleNavBar = (targetId) => {
-    const targetElement = document.getElementById(targetId);
-
-    if (targetElement) {
-      const targetPosition =
-        targetElement.getBoundingClientRect().top + window.scrollY;
-      const currentScrollPosition = window.scrollY;
-
-      if (targetPosition > currentScrollPosition) {
-        setIsShown(false);
-      }
-    }
-  };
-
-  const handleClickOutside = (e) => {
-    if (burgerNavRef.current && !burgerNavRef.current.contains(e.target)) {
-      setIsOpen(false);
-    }
-  };
-
-  const handleWheel = () => {
-    const currentScrollY = window.scrollY;
-    if (isShown && !isOpen) {
-      if (currentScrollY < prevScrollY.current) {
-        setIsShown(false);
-      } else {
-        setIsShown(true);
-      }
-    }
-
-    if (currentScrollY > prevScrollY.current) {
-      setAtTop(false);
-    } else {
-      setAtTop(true);
-    }
-    prevScrollY.current = currentScrollY;
-  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -95,6 +53,47 @@ const NavBar = () => {
     return () => clearTimeout(timeout);
   }, []);
 
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleClickOutside = (e) => {
+    if (burgerNavRef.current && !burgerNavRef.current.contains(e.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  const handleWheel = () => {
+    const currentScrollY = window.scrollY;
+    if (isShown && !isOpen) {
+      if (currentScrollY > prevScrollY.current) {
+        setIsShown(false);
+      } else {
+        setIsShown(true);
+      }
+    }
+
+    if (currentScrollY === 0) {
+      setAtTop(true);
+    } else {
+      setAtTop(false);
+    }
+
+    prevScrollY.current = currentScrollY;
+  };
+
+  const handleKeyDown = (e, targetId) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      scroller.scrollTo(targetId, {
+        duration: 1000,
+        smooth: true,
+      });
+
+      setIsOpen(false);
+    }
+  };
+
   return (
     <>
       <header id="header">
@@ -111,12 +110,13 @@ const NavBar = () => {
             } delay-200 duration-500 ease-in-out`}
           >
             <Link
-              className={`h-full cursor-pointer content-center p-2 text-[22px] text-[#70D7A1] transition-all duration-300 ease-out hover:text-white`}
+              className={`h-full cursor-pointer content-center p-2 text-[22px] text-[#70D7A1] transition-all duration-300 ease-out hover:text-white focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1]`}
               to="hero"
               smooth={true}
               offset={-400}
               duration={1000}
-              onClick={() => toggleNavBar("hero")}
+              onKeyDown={(e) => handleKeyDown(e, "hero")}
+              tabIndex={`${isShown ? "0" : ""}`}
             >
               Emmanuel Idler
             </Link>
@@ -130,7 +130,7 @@ const NavBar = () => {
               } delay-200 duration-500 ease-in-out`}
             >
               <Link
-                className={`cursor-pointer p-2 text-xs transition-all duration-300 ease-out hover:text-[#45CB85] ${
+                className={`cursor-pointer p-2 text-xs transition-all duration-300 ease-out hover:text-[#45CB85] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1] ${
                   currentSection === "about" && currentSection !== ""
                     ? "active"
                     : ""
@@ -139,7 +139,8 @@ const NavBar = () => {
                 smooth={true}
                 offset={-80}
                 duration={1000}
-                onClick={() => toggleNavBar("about")}
+                onKeyDown={(e) => handleKeyDown(e, "about")}
+                tabIndex={`${isShown ? "0" : ""}`}
               >
                 About
               </Link>
@@ -152,13 +153,14 @@ const NavBar = () => {
               } delay-[400ms] duration-500 ease-in-out`}
             >
               <Link
-                className={`cursor-pointer p-2 text-xs transition-all duration-300 ease-out hover:text-[#45CB85] ${
+                className={`cursor-pointer p-2 text-xs transition-all duration-300 ease-out hover:text-[#45CB85] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1] ${
                   currentSection === "projects" ? "active" : ""
                 }`}
                 to="projects"
                 smooth={true}
                 duration={1000}
-                onClick={() => toggleNavBar("projects")}
+                onKeyDown={(e) => handleKeyDown(e, "projects")}
+                tabIndex={`${isShown ? "0" : ""}`}
               >
                 Projects
               </Link>
@@ -171,14 +173,15 @@ const NavBar = () => {
               } delay-[600ms] duration-500 ease-in-out`}
             >
               <Link
-                className={`cursor-pointer p-2 text-xs transition-all duration-300 ease-out hover:text-[#45CB85] ${
+                className={`cursor-pointer p-2 text-xs transition-all duration-300 ease-out hover:text-[#45CB85] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1] ${
                   currentSection === "contact" ? "active" : ""
                 }`}
                 to="contact"
                 smooth={true}
                 offset={-50}
                 duration={1000}
-                onClick={() => toggleNavBar("contact")}
+                onKeyDown={(e) => handleKeyDown(e, "contact")}
+                tabIndex={`${isShown ? "0" : ""}`}
               >
                 Contact
               </Link>
@@ -187,7 +190,11 @@ const NavBar = () => {
         </nav>
 
         {!atTop && (
-          <div className="fixed bottom-1 right-2 z-50 rounded bg-[#24242498] p-3 md:right-5">
+          <div
+            className="fixed bottom-1 right-2 z-50 rounded bg-[#24242498] p-3 focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1] md:right-5"
+            tabIndex="0"
+            onKeyDown={(e) => handleKeyDown(e, "hero")}
+          >
             <Link to="hero" smooth={true} offset={-300} duration={1000}>
               <SlArrowUp
                 className="size-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:text-[#45CB85] md:size-5"
@@ -201,12 +208,13 @@ const NavBar = () => {
           className={`fixed right-5 top-6 z-[52] md:hidden ${!isShown && "-translate-y-12"} delay-75 duration-300`}
         >
           <button
-            onClick={toggleMenu}
+            onClick={isShown && toggleMenu}
             aria-expanded={isOpen}
             aria-controls="burgerNav"
+            className={`flex ${isShown && "focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1]"}`}
           >
             {isOpen ? (
-              <FiX className="size-7 -translate-x-3" aria-label="Close menu" />
+              <FiX className="size-7" aria-label="Close menu" />
             ) : (
               <SlMenu className="size-6" aria-label="Open menu" />
             )}
@@ -220,44 +228,59 @@ const NavBar = () => {
           aria-hidden={!isOpen}
         >
           <ul className="flex cursor-pointer flex-col items-center justify-evenly gap-8">
-            <li className="flex w-full text-center transition-all duration-300 ease-out hover:text-[#45CB85]">
+            <li
+              className={`flex w-full text-center transition-all duration-300 ease-out hover:text-[#45CB85] ${
+                currentSection === "about" ? "active" : ""
+              }`}
+            >
               <Link
-                className="w-full p-3"
+                className="w-full p-3 focus-visible:text-[#45CB85] focus-visible:outline-none"
                 to="about"
                 smooth={true}
                 offset={-50}
                 duration={1000}
-                activeClass="active"
                 spy={true}
                 onClick={toggleMenu}
+                onKeyDown={(e) => handleKeyDown(e, "about")}
+                tabIndex={`${isOpen ? "0" : ""}`}
               >
                 About
               </Link>
             </li>
-            <li className="flex w-full text-center transition-all duration-300 ease-out hover:text-[#45CB85]">
+            <li
+              className={`flex w-full text-center transition-all duration-300 ease-out hover:text-[#45CB85] ${
+                currentSection === "projects" ? "active" : ""
+              }`}
+            >
               <Link
-                className="w-full p-3"
+                className="w-full p-3 focus-visible:text-[#45CB85] focus-visible:outline-none"
                 to="projects"
                 smooth={true}
-                offset={-50}
+                offset={-10}
                 duration={1000}
-                activeClass="active"
                 spy={true}
                 onClick={toggleMenu}
+                onKeyDown={(e) => handleKeyDown(e, "projects")}
+                tabIndex={`${isOpen ? "0" : ""}`}
               >
                 Projects
               </Link>
             </li>
-            <li className="flex w-full text-center transition-all duration-300 ease-out hover:text-[#45CB85]">
+            <li
+              className={`flex w-full text-center transition-all duration-300 ease-out hover:text-[#45CB85] ${
+                currentSection === "contact" ? "active" : ""
+              }`}
+            >
               <Link
-                className="w-full p-3"
+                className="w-full p-3 focus-visible:text-[#45CB85] focus-visible:outline-none"
                 to="contact"
                 smooth={true}
                 offset={-100}
                 duration={1000}
-                activeClass="active"
                 spy={true}
                 onClick={toggleMenu}
+                onKeyDown={(e) => handleKeyDown(e, "contact")}
+                tabIndex={`${isOpen ? "0" : ""}`}
               >
                 Contact
               </Link>
