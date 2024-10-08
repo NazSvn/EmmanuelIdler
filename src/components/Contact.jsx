@@ -79,6 +79,7 @@ const Contact = () => {
                   rel="noopener noreferrer"
                   onMouseEnter={() => handleMouseEnter("github")}
                   onMouseLeave={handleMouseLeave}
+                  className="inline-block focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1]"
                 >
                   <TbBrandGithub className="m-1 inline size-11 cursor-pointer transition-all hover:size-12 hover:text-[#45CB85]" />
                 </a>
@@ -99,6 +100,7 @@ const Contact = () => {
                   rel="noopener noreferrer"
                   onMouseEnter={() => handleMouseEnter("mail")}
                   onMouseLeave={handleMouseLeave}
+                  className="inline-block focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1]"
                 >
                   <TbMail className="m-1 inline size-12 cursor-pointer transition-all hover:size-14 hover:text-[#45CB85]" />
                 </a>
@@ -119,6 +121,7 @@ const Contact = () => {
                   rel="noopener noreferrer"
                   onMouseEnter={() => handleMouseEnter("linkedin")}
                   onMouseLeave={handleMouseLeave}
+                  className="inline-block focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1]"
                 >
                   <TbBrandLinkedin className="m-1 inline size-11 cursor-pointer transition-all hover:size-12 hover:text-[#45CB85]" />
                 </a>
