@@ -35,6 +35,14 @@ export default {
               color: "#45CB85",
             },
           },
+          "&:focus-visible": {
+            outline: "none",
+            "&:after": {
+              marginLeft: "11px",
+              width: "60%",
+            },
+            color: "#45CB85",
+          },
         },
       });
     },

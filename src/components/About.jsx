@@ -33,7 +33,12 @@ const About = () => {
   });
 
   return (
-    <section id="about" ref={sectionRef} className="mb-40 pt-24 md:pt-28">
+    <section
+      id="about"
+      ref={sectionRef}
+      className="mb-40 pt-24 md:pt-28"
+      aria-labelledby="about-heading"
+    >
       <div
         ref={ref}
         className={`relative mx-auto w-4/5 max-w-4xl content-center sm:w-4/5 ${
@@ -46,15 +51,19 @@ const About = () => {
             : ""
         }`}
       >
-        <h1 className="mb-5">
-          <span
-            className="text-4xl font-bold text-[#45CB85] focus-visible:rounded-sm focus-visible:outline-none focus-visible:outline-offset-4 focus-visible:ring-2 focus-visible:ring-[#70D7A1] md:text-[40px]"
-            tabIndex={0}
-          >
-            About me
-          </span>
-        </h1>
+        {/* Main Section Header */}
+        <header id="about-heading">
+          <h1 className="mb-5">
+            <span
+              className="text-4xl font-bold text-[#45CB85] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1] md:text-[40px]"
+              tabIndex={0}
+            >
+              About Me
+            </span>
+          </h1>
+        </header>
         <div className="flex gap-3 max-sm:flex-col">
+          {/* About Me Paragraph */}
           <p className="mr-4 w-3/5 text-wrap leading-relaxed max-sm:w-auto">
             Hi! I&apos;m <span className="text-[#45CB85]">Emmanuel Idler</span>,
             a Junior Front-End Developer with a strong passion for continuously
@@ -71,6 +80,8 @@ const About = () => {
             Feel free to check out my projects and get in touch if you&apos;d
             like to collaborate or have any questions!
           </p>
+
+          {/* Technologies Section */}
           <div
             className={`relative w-2/5 ps-3 max-sm:w-auto ${
               scrollDirection === "down"
@@ -85,37 +96,27 @@ const About = () => {
             <p className="mb-2 text-[#45CB85]">
               Technologies I&apos;ve worked with recently:
             </p>
-            <ul className="grid grid-cols-2 gap-2 text-xs">
-              <li className="custom-hover-underline">
-                <RiArrowDropRightLine className="inline" />
-                <span className="text-inherit transition-all duration-300">
-                  HTML
-                </span>
-              </li>
-              <li className="custom-hover-underline">
-                <RiArrowDropRightLine className="inline" />
-                <span className="text-inherit transition-all duration-300">
-                  CSS
-                </span>
-              </li>
-              <li className="custom-hover-underline">
-                <RiArrowDropRightLine className="inline" />
-                <span className="text-inherit transition-all duration-300">
-                  JavaScript
-                </span>
-              </li>
-              <li className="custom-hover-underline">
-                <RiArrowDropRightLine className="inline" />
-                <span className="text-inherit transition-all duration-300">
-                  Tailwind CSS
-                </span>
-              </li>
-              <li className="custom-hover-underline">
-                <RiArrowDropRightLine className="inline" />
-                <span className="text-inherit transition-all duration-300">
-                  React
-                </span>
-              </li>
+            <ul
+              className="grid grid-cols-2 gap-2 text-xs"
+              aria-label="Technologies list"
+            >
+              {["HTML", "CSS", "JavaScript", "Tailwind CSS", "React"].map(
+                (tech) => (
+                  <li
+                    key={tech}
+                    className="custom-hover-underline"
+                    tabIndex={0}
+                  >
+                    <RiArrowDropRightLine
+                      className="inline"
+                      aria-hidden="true"
+                    />
+                    <span className="text-inherit transition-all duration-300">
+                      {tech}
+                    </span>
+                  </li>
+                ),
+              )}
             </ul>
           </div>
         </div>
