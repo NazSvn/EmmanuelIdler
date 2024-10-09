@@ -46,8 +46,13 @@ const About = () => {
             : ""
         }`}
       >
-        <h1 className="mb-5 text-4xl font-bold text-[#45CB85] md:text-[40px]">
-          About me
+        <h1 className="mb-5">
+          <span
+            className="text-4xl font-bold text-[#45CB85] focus-visible:rounded-sm focus-visible:outline-none focus-visible:outline-offset-4 focus-visible:ring-2 focus-visible:ring-[#70D7A1] md:text-[40px]"
+            tabIndex={0}
+          >
+            About me
+          </span>
         </h1>
         <div className="flex gap-3 max-sm:flex-col">
           <p className="mr-4 w-3/5 text-wrap leading-relaxed max-sm:w-auto">

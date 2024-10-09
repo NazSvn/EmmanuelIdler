@@ -22,7 +22,7 @@ const NavBar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= "768") {
+      if (window.innerWidth >= 768) {
         document.body.classList.remove("no-scroll");
         setIsOpen(false);
       }
@@ -96,13 +96,14 @@ const NavBar = () => {
 
   return (
     <>
-      <header id="header">
+      <header id="header" aria-label="Site Header">
         <nav
           id="navBar"
           className={`fixed left-0 right-0 top-0 z-50 flex h-16 items-center justify-between px-4 text-[hsl(0,0%,100%)] ${!isShown && "-translate-y-full"} delay-75 duration-300 ${atTop || !isShown ? "shadow-none" : "shadow-[0px_13px_23px_-11px_rgba(0,0,0,0.41)]"} bg-[rgba(21,49,49,0.85)] backdrop-blur`}
           aria-label="Main Navigation"
+          role="navigation"
         >
-          <h3
+          <h1
             className={`transform transition ${
               firstLoad
                 ? "translate-x-[-100%] opacity-0"
@@ -116,93 +117,61 @@ const NavBar = () => {
               offset={-400}
               duration={1000}
               onKeyDown={(e) => handleKeyDown(e, "hero")}
-              tabIndex={`${isShown ? "0" : ""}`}
+              tabIndex={`${isShown ? "0" : "-1"}`}
             >
               Emmanuel Idler
             </Link>
-          </h3>
+          </h1>
           <ul className="hidden h-full w-80 items-center justify-between p-2 md:flex">
-            <li
-              className={`transform transition ${
-                firstLoad
-                  ? "translate-y-[-100%] opacity-0"
-                  : "translate-y-0 opacity-100"
-              } delay-200 duration-500 ease-in-out`}
-            >
-              <Link
-                className={`cursor-pointer p-2 text-xs transition-all duration-300 ease-out hover:text-[#45CB85] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1] ${
-                  currentSection === "about" && currentSection !== ""
-                    ? "active"
-                    : ""
-                }`}
-                to="about"
-                smooth={true}
-                offset={-80}
-                duration={1000}
-                onKeyDown={(e) => handleKeyDown(e, "about")}
-                tabIndex={`${isShown ? "0" : ""}`}
+            {["about", "projects", "contact"].map((section, index) => (
+              <li
+                key={section}
+                className={`transform transition ${
+                  firstLoad
+                    ? "translate-y-[-100%] opacity-0"
+                    : "translate-y-0 opacity-100"
+                } delay-[${(index + 1) * 200}ms] duration-500 ease-in-out`}
               >
-                About
-              </Link>
-            </li>
-            <li
-              className={`transform transition ${
-                firstLoad
-                  ? "translate-y-[-100%] opacity-0"
-                  : "translate-y-0 opacity-100"
-              } delay-[400ms] duration-500 ease-in-out`}
-            >
-              <Link
-                className={`cursor-pointer p-2 text-xs transition-all duration-300 ease-out hover:text-[#45CB85] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1] ${
-                  currentSection === "projects" ? "active" : ""
-                }`}
-                to="projects"
-                smooth={true}
-                duration={1000}
-                onKeyDown={(e) => handleKeyDown(e, "projects")}
-                tabIndex={`${isShown ? "0" : ""}`}
-              >
-                Projects
-              </Link>
-            </li>
-            <li
-              className={`transform transition ${
-                firstLoad
-                  ? "translate-y-[-100%] opacity-0"
-                  : "translate-y-0 opacity-100"
-              } delay-[600ms] duration-500 ease-in-out`}
-            >
-              <Link
-                className={`cursor-pointer p-2 text-xs transition-all duration-300 ease-out hover:text-[#45CB85] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1] ${
-                  currentSection === "contact" ? "active" : ""
-                }`}
-                to="contact"
-                smooth={true}
-                offset={-50}
-                duration={1000}
-                onKeyDown={(e) => handleKeyDown(e, "contact")}
-                tabIndex={`${isShown ? "0" : ""}`}
-              >
-                Contact
-              </Link>
-            </li>
+                <Link
+                  className={`cursor-pointer p-2 text-xs transition-all duration-300 ease-out hover:text-[#45CB85] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1] ${
+                    currentSection === section && currentSection !== ""
+                      ? "active"
+                      : ""
+                  }`}
+                  to={section}
+                  smooth={true}
+                  offset={-80}
+                  duration={1000}
+                  onKeyDown={(e) => handleKeyDown(e, section)}
+                  tabIndex={`${isShown ? "0" : "-1"}`}
+                  aria-current={currentSection === section ? "true" : undefined}
+                >
+                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
+
+        {/* Scroll to Top Button */}
 
         {!atTop && (
           <div
             className="fixed bottom-1 right-2 z-50 rounded bg-[#24242498] p-3 focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1] md:right-5"
             tabIndex="0"
             onKeyDown={(e) => handleKeyDown(e, "hero")}
+            aria-label="Scroll to top"
           >
             <Link to="hero" smooth={true} offset={-300} duration={1000}>
               <SlArrowUp
                 className="size-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:text-[#45CB85] md:size-5"
-                aria-label="Scroll to top"
+                aria-hidden="true"
               />
             </Link>
           </div>
         )}
+
+        {/* Mobile Menu Toggle Button */}
 
         <div
           className={`fixed right-5 top-6 z-[52] md:hidden ${!isShown && "-translate-y-12"} delay-75 duration-300`}
@@ -221,6 +190,8 @@ const NavBar = () => {
           </button>
         </div>
 
+        {/* Mobile Navigation */}
+
         <div
           id="burgerNav"
           ref={burgerNavRef}
@@ -228,63 +199,29 @@ const NavBar = () => {
           aria-hidden={!isOpen}
         >
           <ul className="flex cursor-pointer flex-col items-center justify-evenly gap-8">
-            <li
-              className={`flex w-full text-center transition-all duration-300 ease-out hover:text-[#45CB85] ${
-                currentSection === "about" ? "active" : ""
-              }`}
-            >
-              <Link
-                className="w-full p-3 focus-visible:text-[#45CB85] focus-visible:outline-none"
-                to="about"
-                smooth={true}
-                offset={-50}
-                duration={1000}
-                spy={true}
-                onClick={toggleMenu}
-                onKeyDown={(e) => handleKeyDown(e, "about")}
-                tabIndex={`${isOpen ? "0" : ""}`}
+            {["about", "projects", "contact"].map((section) => (
+              <li
+                key={section}
+                className={`flex w-full text-center transition-all duration-300 ease-out hover:text-[#45CB85] ${
+                  currentSection === section ? "active" : ""
+                }`}
               >
-                About
-              </Link>
-            </li>
-            <li
-              className={`flex w-full text-center transition-all duration-300 ease-out hover:text-[#45CB85] ${
-                currentSection === "projects" ? "active" : ""
-              }`}
-            >
-              <Link
-                className="w-full p-3 focus-visible:text-[#45CB85] focus-visible:outline-none"
-                to="projects"
-                smooth={true}
-                offset={-10}
-                duration={1000}
-                spy={true}
-                onClick={toggleMenu}
-                onKeyDown={(e) => handleKeyDown(e, "projects")}
-                tabIndex={`${isOpen ? "0" : ""}`}
-              >
-                Projects
-              </Link>
-            </li>
-            <li
-              className={`flex w-full text-center transition-all duration-300 ease-out hover:text-[#45CB85] ${
-                currentSection === "contact" ? "active" : ""
-              }`}
-            >
-              <Link
-                className="w-full p-3 focus-visible:text-[#45CB85] focus-visible:outline-none"
-                to="contact"
-                smooth={true}
-                offset={-100}
-                duration={1000}
-                spy={true}
-                onClick={toggleMenu}
-                onKeyDown={(e) => handleKeyDown(e, "contact")}
-                tabIndex={`${isOpen ? "0" : ""}`}
-              >
-                Contact
-              </Link>
-            </li>
+                <Link
+                  className="w-full p-3 focus-visible:text-[#45CB85] focus-visible:outline-none"
+                  to={section}
+                  smooth={true}
+                  offset={-50}
+                  duration={1000}
+                  spy={true}
+                  onClick={toggleMenu}
+                  onKeyDown={(e) => handleKeyDown(e, section)}
+                  tabIndex={`${isOpen ? "0" : "-1"}`}
+                  aria-current={currentSection === section ? "true" : undefined}
+                >
+                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </header>

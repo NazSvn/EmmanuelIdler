@@ -5,7 +5,7 @@ import { GlobalContext } from "../context";
 
 const Hero = () => {
   const { firstLoad, setFirstLoad, setCurrentSection } =
-    useContext(GlobalContext); 
+    useContext(GlobalContext);
 
   const sectionRef = useRef(null);
 
@@ -13,7 +13,7 @@ const Hero = () => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setCurrentSection("");  
+          setCurrentSection("");
         }
       },
       { threshold: 0.5 },
@@ -46,11 +46,12 @@ const Hero = () => {
       <div className="flex w-4/5 max-w-4xl justify-center">
         <div>
           <h1
-            className={`mb-5 transform text-6xl font-bold text-white transition md:text-8xl ${
+            className={`mb-5 transform text-6xl font-bold text-white transition focus-visible:outline-none md:text-8xl ${
               firstLoad
                 ? "translate-y-[50%] opacity-0"
                 : "translate-y-0 opacity-100"
             } delay-[800ms] duration-[600ms] ease-in-out`}
+            tabIndex={0}
           >
             Emmanuel Idler
           </h1>

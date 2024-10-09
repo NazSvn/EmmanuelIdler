@@ -63,8 +63,14 @@ const ProjectTile = () => {
     <>
       <section id="projects" ref={sectionRef} className="pt-24 md:pt-28">
         <div className="mx-auto w-4/5 max-w-4xl">
-          <h1 className="mb-9 text-4xl font-bold text-[#45CB85] md:text-[40px]">
-            projects
+          <h1 className="mb-9">
+            {" "}
+            <span
+              className="text-4xl font-bold text-[#45CB85] focus-visible:rounded-sm focus-visible:outline-none focus-visible:outline-offset-4 focus-visible:ring-2 focus-visible:ring-[#70D7A1] md:text-[40px]"
+              tabIndex={0}
+            >
+              Projects
+            </span>
           </h1>
           {projects.map((project, index) => {
             // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -138,7 +144,7 @@ const ProjectTile = () => {
                         rel="noopener noreferrer"
                         className="group focus-visible:outline-none"
                       >
-                        <h3 className="">
+                        <h3>
                           <span className="pointer-events-auto mb-4 cursor-pointer text-2xl hover:text-[#45CB85] group-focus-visible:rounded-[1px] group-focus-visible:outline group-focus-visible:outline-offset-4 group-focus-visible:outline-[#70D7A1]">
                             {project.title}
                           </span>
