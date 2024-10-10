@@ -2,6 +2,43 @@ import { TbBrandGithub, TbMail, TbBrandLinkedin } from "react-icons/tb";
 import { useContext, useRef, useEffect, useState } from "react";
 import { GlobalContext } from "../context";
 import useIntersectionObserver from "./utils/useIntersectionObserver";
+import { PropTypes } from "prop-types";
+
+const SocialLinks = ({
+  href,
+  label,
+  icon: IconComponent,
+  handleMouseEnter,
+  handleMouseLeave,
+  tooltipVisible,
+}) => (
+  <span>
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      aria-describedby={tooltipVisible ? `${label}-tooltip` : undefined}
+      onMouseEnter={() => handleMouseEnter(label)}
+      onMouseLeave={handleMouseLeave}
+      onFocus={() => handleMouseEnter(label)}
+      onBlur={handleMouseLeave}
+      className="inline-block focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1]"
+    >
+      <IconComponent className="m-1 inline size-11 cursor-pointer transition-all hover:size-12 hover:text-[#45CB85]" />
+    </a>
+    {tooltipVisible && (
+      <span
+        id={`${label}-tooltip`}
+        role="tooltip"
+        aria-live="polite"
+        className="absolute -bottom-8 left-2/4 mb-2 rounded border bg-black px-2 py-1 text-xs text-white opacity-100"
+      >
+        {label}
+      </span>
+    )}
+  </span>
+);
 
 const Contact = () => {
   const { setCurrentSection } = useContext(GlobalContext);
@@ -73,63 +110,45 @@ const Contact = () => {
                   isVisible ? "opacity-100" : "opacity-0"
                 } delay-200 duration-[1500ms] ease-in-out`}
               >
-                <a
+                <SocialLinks
                   href="https://github.com/NazSvn"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onMouseEnter={() => handleMouseEnter("github")}
-                  onMouseLeave={handleMouseLeave}
-                  className="inline-block focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1]"
-                >
-                  <TbBrandGithub className="m-1 inline size-11 cursor-pointer transition-all hover:size-12 hover:text-[#45CB85]" />
-                </a>
-                {showTooltip === "github" && (
-                  <span className="absolute -bottom-8 left-2/4 mb-2 rounded border bg-black px-2 py-1 text-xs text-white opacity-100">
-                    Github
-                  </span>
-                )}
+                  label="Github"
+                  icon={TbBrandGithub}
+                  showTooltip={showTooltip}
+                  handleMouseEnter={handleMouseEnter}
+                  handleMouseLeave={handleMouseLeave}
+                  tooltipVisible={showTooltip === "Github"}
+                />
               </span>
               <span
                 className={`w-20 transform transition ${
                   isVisible ? "opacity-100" : "opacity-0"
                 } delay-500 duration-[1500ms] ease-in-out`}
               >
-                <a
+                <SocialLinks
                   href="mailto:idler90@gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onMouseEnter={() => handleMouseEnter("mail")}
-                  onMouseLeave={handleMouseLeave}
-                  className="inline-block focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1]"
-                >
-                  <TbMail className="m-1 inline size-12 cursor-pointer transition-all hover:size-14 hover:text-[#45CB85]" />
-                </a>
-                {showTooltip === "mail" && (
-                  <span className="absolute -bottom-7 left-2/4 mb-2 rounded border bg-black px-2 py-1 text-xs text-white opacity-100">
-                    Mail
-                  </span>
-                )}
+                  label="Mail"
+                  icon={TbMail}
+                  showTooltip={showTooltip}
+                  handleMouseEnter={handleMouseEnter}
+                  handleMouseLeave={handleMouseLeave}
+                  tooltipVisible={showTooltip === "Mail"}
+                />
               </span>
               <span
                 className={`w-20 transform transition ${
                   isVisible ? "opacity-100" : "opacity-0"
                 } delay-700 duration-[1500ms] ease-in-out`}
               >
-                <a
+                <SocialLinks
                   href="http://linkedin.com/in/emmanuel-idler-8b6a30227"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onMouseEnter={() => handleMouseEnter("linkedin")}
-                  onMouseLeave={handleMouseLeave}
-                  className="inline-block focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1]"
-                >
-                  <TbBrandLinkedin className="m-1 inline size-11 cursor-pointer transition-all hover:size-12 hover:text-[#45CB85]" />
-                </a>
-                {showTooltip === "linkedin" && (
-                  <span className="absolute -bottom-8 left-2/4 mb-2 rounded border bg-black px-2 py-1 text-xs text-white opacity-100">
-                    LinkedIn
-                  </span>
-                )}
+                  label="LinkedIn"
+                  icon={TbBrandLinkedin}
+                  showTooltip={showTooltip}
+                  handleMouseEnter={handleMouseEnter}
+                  handleMouseLeave={handleMouseLeave}
+                  tooltipVisible={showTooltip === "LinkedIn"}
+                />
               </span>
             </div>
           </div>
@@ -139,3 +158,12 @@ const Contact = () => {
   );
 };
 export default Contact;
+
+SocialLinks.propTypes = {
+  href: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  icon: PropTypes.elementType.isRequired,
+  handleMouseEnter: PropTypes.func.isRequired,
+  handleMouseLeave: PropTypes.func.isRequired,
+  tooltipVisible: PropTypes.bool.isRequired,
+};

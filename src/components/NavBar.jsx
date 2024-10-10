@@ -177,7 +177,7 @@ const NavBar = () => {
           className={`fixed right-5 top-6 z-[52] md:hidden ${!isShown && "-translate-y-12"} delay-75 duration-300`}
         >
           <button
-            onClick={isShown && toggleMenu}
+            onClick={toggleMenu}
             aria-expanded={isOpen}
             aria-controls="burgerNav"
             className={`flex ${isShown && "focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1]"}`}
