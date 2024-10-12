@@ -123,33 +123,42 @@ const NavBar = () => {
             </Link>
           </h1>
           <ul className="hidden h-full w-80 items-center justify-between p-2 md:flex">
-            {["about", "projects", "contact"].map((section, index) => (
-              <li
-                key={section}
-                className={`transform transition ${
-                  firstLoad
-                    ? "translate-y-[-100%] opacity-0"
-                    : "translate-y-0 opacity-100"
-                } delay-[${(index + 1) * 200}ms] duration-500 ease-in-out`}
-              >
-                <Link
-                  className={`cursor-pointer p-2 text-xs transition-all duration-300 ease-out hover:text-[#45CB85] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1] ${
-                    currentSection === section && currentSection !== ""
-                      ? "active"
-                      : ""
-                  }`}
-                  to={section}
-                  smooth={true}
-                  offset={-80}
-                  duration={1000}
-                  onKeyDown={(e) => handleKeyDown(e, section)}
-                  tabIndex={`${isShown ? "0" : "-1"}`}
-                  aria-current={currentSection === section ? "true" : undefined}
+            {["about", "projects", "contact"].map((section, index) => {
+              const delayClasses = [
+                "delay-[200ms]",
+                "delay-[400ms]",
+                "delay-[600ms]",
+              ];
+              return (
+                <li
+                  key={section}
+                  className={`transform transition ${
+                    firstLoad
+                      ? "translate-y-[-100%] opacity-0"
+                      : "translate-y-0 opacity-100"
+                  } ${delayClasses[index]} duration-500 ease-in-out`}
                 >
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
-                </Link>
-              </li>
-            ))}
+                  <Link
+                    className={`cursor-pointer p-2 text-xs transition-all duration-300 ease-out hover:text-[#45CB85] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1] ${
+                      currentSection === section && currentSection !== ""
+                        ? "active"
+                        : ""
+                    }`}
+                    to={section}
+                    smooth={true}
+                    offset={-80}
+                    duration={1000}
+                    onKeyDown={(e) => handleKeyDown(e, section)}
+                    tabIndex={`${isShown ? "0" : "-1"}`}
+                    aria-current={
+                      currentSection === section ? "true" : undefined
+                    }
+                  >
+                    {section.charAt(0).toUpperCase() + section.slice(1)}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 

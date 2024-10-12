@@ -75,7 +75,12 @@ const Hero = () => {
     },
   ];
 
-  const animationDelay = 1500;
+  const animationDelay = [
+    "delay-[1500ms]",
+    "delay-[1600ms]",
+    "delay-[1700ms]",
+    "delay-[1800ms]",
+  ];
 
   return (
     <header
@@ -135,7 +140,7 @@ const Hero = () => {
                   key={tech.label}
                   className={`h-14 w-14 transform content-center text-center transition ${
                     firstLoad ? "opacity-0" : "opacity-100"
-                  } delay-[${animationDelay + index * 100}ms] duration-[1500ms] ease-in-out`}
+                  } ${animationDelay[index]} duration-[1500ms] ease-in-out`}
                 >
                   <tech.icon
                     aria-label={tech.label}
