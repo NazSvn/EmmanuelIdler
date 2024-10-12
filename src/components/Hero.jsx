@@ -42,7 +42,7 @@ const Hero = () => {
       setIconVisible(true);
     }, 3300);
     return () => clearTimeout(timeoutId);
-  }, [setIconVisible]);
+  }, []);
 
   const techStack = [
     {

@@ -64,7 +64,6 @@ const ProjectTile = () => {
       <section id="projects" ref={sectionRef} className="pt-24 md:pt-28">
         <div className="mx-auto w-4/5 max-w-4xl">
           <h1 className="mb-9">
-            {" "}
             <span
               className="text-4xl font-bold text-[#45CB85] focus-visible:rounded-sm focus-visible:outline-none focus-visible:outline-offset-4 focus-visible:ring-2 focus-visible:ring-[#70D7A1] md:text-[40px]"
               tabIndex={0}
@@ -100,6 +99,7 @@ const ProjectTile = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group relative focus-visible:outline-none"
+                      aria-label={`Visit the project page of ${project.title}`}
                     >
                       <div className="group absolute inset-0 left-0 top-0 z-[3] h-full w-full rounded-md bg-[#153131] mix-blend-multiply transition-opacity duration-300 ease-in-out before:absolute before:h-full before:w-full before:rounded-md before:bg-[#4bdd92b0] before:mix-blend-screen group-hover:opacity-0 group-focus-visible:opacity-0"></div>
 
@@ -121,7 +121,7 @@ const ProjectTile = () => {
                             src={project.images.png.srcset["700w"]}
                             srcSet={`${project.images.png.srcset["175w"]} 175w, ${project.images.png.srcset["350w"]} 350w, ${project.images.png.srcset["700w"]} 700w`}
                             sizes={project.images.png.sizes}
-                            alt="Project thumbnail"
+                            alt={`Thumbnail for the project ${project.title}`}
                             style={{ objectFit: "cover", opacity: 1 }}
                             className="rounded-md"
                           />
@@ -143,6 +143,7 @@ const ProjectTile = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group focus-visible:outline-none"
+                        aria-label={`Visit ${project.title} project page`}
                       >
                         <h3>
                           <span className="pointer-events-auto mb-4 cursor-pointer text-2xl hover:text-[#45CB85] group-focus-visible:rounded-[1px] group-focus-visible:outline group-focus-visible:outline-offset-4 group-focus-visible:outline-[#70D7A1]">
@@ -181,11 +182,16 @@ const ProjectTile = () => {
                           className="group relative focus-visible:outline-none"
                           onMouseEnter={() => handleMouseEnter("git", index)}
                           onMouseLeave={handleMouseLeave}
+                          aria-describedby={`tooltip-git-${index}`}
                         >
                           <TbBrandGithub className="pointer-events-auto m-1 inline size-6 cursor-pointer transition-all hover:text-[#45CB85] group-focus-visible:rounded-sm group-focus-visible:outline-none group-focus-visible:ring-2 group-focus-visible:ring-[#70D7A1]" />
                           {showTooltip?.icon === "git" &&
                             showTooltip?.index === index && (
-                              <span className="absolute -bottom-10 left-6 mb-2 rounded border bg-black px-2 py-1 text-xs text-white opacity-100">
+                              <span
+                                id={`tooltip-git-${index}`}
+                                role="tooltip"
+                                className="absolute -bottom-10 left-6 mb-2 rounded border bg-black px-2 py-1 text-xs text-white opacity-100"
+                              >
                                 Github
                               </span>
                             )}
@@ -198,11 +204,16 @@ const ProjectTile = () => {
                           className="group relative focus-visible:outline-none"
                           onMouseEnter={() => handleMouseEnter("link", index)}
                           onMouseLeave={handleMouseLeave}
+                          aria-describedby={`tooltip-link-${index}`}
                         >
                           <FiExternalLink className="pointer-events-auto m-1 inline size-6 cursor-pointer transition-all hover:text-[#45CB85] group-focus-visible:rounded-sm group-focus-visible:outline-none group-focus-visible:ring-2 group-focus-visible:ring-[#70D7A1]" />
                           {showTooltip?.icon === "link" &&
                             showTooltip?.index === index && (
-                              <span className="absolute -bottom-10 left-6 mb-2 text-nowrap rounded border bg-black px-2 py-1 text-xs text-white opacity-100">
+                              <span
+                                id={`tooltip-link-${index}`}
+                                role="tooltip"
+                                className="absolute -bottom-10 left-6 mb-2 text-nowrap rounded border bg-black px-2 py-1 text-xs text-white opacity-100"
+                              >
                                 External link
                               </span>
                             )}
