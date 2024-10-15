@@ -113,6 +113,7 @@ const NavBar = () => {
             <Link
               className={`h-full cursor-pointer content-center p-2 text-[22px] text-[#70D7A1] transition-all duration-300 ease-out hover:text-white focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1]`}
               to="hero"
+              href={`#hero`}
               smooth={true}
               offset={-400}
               duration={1000}
@@ -145,6 +146,7 @@ const NavBar = () => {
                         : ""
                     }`}
                     to={section}
+                    href={`#${section}`}
                     smooth={true}
                     offset={-80}
                     duration={1000}
@@ -218,6 +220,7 @@ const NavBar = () => {
                 <Link
                   className="w-full p-3 focus-visible:text-[#45CB85] focus-visible:outline-none"
                   to={section}
+                  href={`#${section}`}
                   smooth={true}
                   offset={-50}
                   duration={1000}
