@@ -29,7 +29,7 @@
     },
     "title": "Amazon",
     "description": "An Amazon pseudo clone, created using JavaScript, CSS, and HTML. This project simulates key features of the Amazon shopping platform, including product searching, a shopping cart,  order and tracking functionalities.",
-    "wordsTohigHlight": [
+    "wordsToHighlight": [
       "Amazon pseudo clone",
       "shopping cart",
       "order",
@@ -68,7 +68,7 @@
     },
     "title": "Weather App",
     "description": "This Weather App is a React-based application that allows users to search for and view weather information for cities around the world. It provides current weather conditions, hourly forecasts, and daily forecasts.",
-    "wordsTohigHlight": [
+    "wordsToHighlight": [
       "Weather",
       "React-based",
       "search",
@@ -77,7 +77,7 @@
       "hourly",
       "daily"
     ],
-    "tech": ["React", "Vite", "HTML", "JavaScrip", "CSS"],
+    "tech": ["React", "Vite", "HTML", "JavaScript", "CSS"],
     "code": "https://github.com/NazSvn/WeatherApp"
   },
   {
@@ -109,8 +109,8 @@
       }
     },
     "title": "Pokédex",
-    "description": "This app was created as part of freeCodeCamp's JavaScript Algorithms and Data Structures certification. The challenge involved building a Pokémon search app that fetches data from an API and displays stats and image of the Pokémon. The app was developed using JavaScript, CSS, and HTML.",
-    "wordsTohigHlight": [
+    "description": "This app was created as part of freeCodeCamp's JavaScript Algorithms and Data Structures certification. The challenge involved building a Pokémon search app that fetches data from an API and displays the stats and image of the Pokémon. The app was developed using JavaScript, CSS, and HTML.",
+    "wordsToHighlight": [
       "Algorithms",
       "freeCodeCamp's",
       "Data Structures certification"
@@ -148,7 +148,7 @@
     },
     "title": "Tenzies",
     "description": "Tenzies is a dice game where the objective is to roll the dice until all show the same value. You can click each die to freeze it at its current value between rolls. This app was developed with React, bundled and optimized using Vite.",
-    "wordsTohigHlight": ["game", "freeze", "between rolls", "React", "Vite"],
+    "wordsToHighlight": ["game", "freeze", "between rolls", "React", "Vite"],
     "tech": ["HTML", "CSS", "React"],
     "code": "https://github.com/NazSvn/TENZIES"
   },
@@ -182,7 +182,7 @@
     },
     "title": "Landing Page",
     "description": "This landing page was designed and developed as part of the freeCodeCamp Responsive Web Design Certification. It was required to be created using basic HTML and CSS.",
-    "wordsTohigHlight": [
+    "wordsToHighlight": [
       "freeCodeCamp",
       "Web Design Certification",
       "HTML",
