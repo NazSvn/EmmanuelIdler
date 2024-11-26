@@ -155,7 +155,7 @@ const ProjectTile = () => {
                         <p className="pointer-events-auto mb-4 cursor-default rounded-md bg-[#153131] p-4">
                           {highlightWords(
                             project.description,
-                            project.wordsTohigHlight,
+                            project.wordsToHighlight,
                           )}
                         </p>
                       </div>
