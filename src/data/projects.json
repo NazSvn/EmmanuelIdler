@@ -39,6 +39,48 @@
     "code": "https://github.com/NazSvn/AmazonPseudoClone"
   },
   {
+    "href": "https://nazsvn.github.io/WeatherApp/",
+    "images": {
+      "avif": {
+        "srcset": {
+          "175w": "/images/Weather175.avif",
+          "350w": "/images/Weather350.avif",
+          "700w": "/images/Weather700.avif"
+        },
+        "sizes": "(min-width: 700px) 700px, 100vw"
+      },
+      "webp": {
+        "srcset": {
+          "175w": "/images/Weather175.webp",
+          "350w": "/images/Weather350.webp",
+          "700w": "/images/Weather700.webp"
+        },
+        "sizes": "(min-width: 700px) 700px, 100vw"
+      },
+      "png": {
+        "srcset": {
+          "175w": "/images/Weather175.png",
+          "350w": "/images/Weather350.png",
+          "700w": "/images/Weather700.png"
+        },
+        "sizes": "(min-width: 700px) 700px, 100vw"
+      }
+    },
+    "title": "Weather App",
+    "description": "This Weather App is a React-based application that allows users to search for and view weather information for cities around the world. It provides current weather conditions, hourly forecasts, and daily forecasts.",
+    "wordsTohigHlight": [
+      "Weather",
+      "React-based",
+      "search",
+      "information",
+      "current",
+      "hourly",
+      "daily"
+    ],
+    "tech": ["React", "Vite", "HTML", "JavaScrip", "CSS"],
+    "code": "https://github.com/NazSvn/WeatherApp"
+  },
+  {
     "href": "https://nazsvn.github.io/Pokedesk/",
     "images": {
       "avif": {
