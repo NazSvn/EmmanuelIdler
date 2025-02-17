@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useCallback, useContext, useEffect, useRef } from "react";
 import { SlArrowUp, SlMenu } from "react-icons/sl";
 import { Link, scroller } from "react-scroll";
 import { GlobalContext } from "../context";
@@ -20,50 +20,16 @@ const NavBar = () => {
   const burgerNavRef = useRef(null);
   const prevScrollY = useRef(window.scrollY);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        document.body.classList.remove("no-scroll");
+  const handleClickOutside = useCallback(
+    (e) => {
+      if (burgerNavRef.current && !burgerNavRef.current.contains(e.target)) {
         setIsOpen(false);
       }
-    };
+    },
+    [setIsOpen],
+  );
 
-    if (isOpen) {
-      document.body.classList.add("no-scroll");
-    } else {
-      document.body.classList.remove("no-scroll");
-    }
-
-    window.addEventListener("resize", handleResize);
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("scroll", handleWheel);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.body.classList.remove("no-scroll");
-      document.removeEventListener("scroll", handleWheel);
-    };
-  }, [isOpen]);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setFirstLoad(false);
-    }, 1000);
-    return () => clearTimeout(timeout);
-  }, []);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleClickOutside = (e) => {
-    if (burgerNavRef.current && !burgerNavRef.current.contains(e.target)) {
-      setIsOpen(false);
-    }
-  };
-
-  const handleWheel = () => {
+  const handleWheel = useCallback(() => {
     const currentScrollY = window.scrollY;
     if (isShown && !isOpen) {
       if (currentScrollY > prevScrollY.current) {
@@ -71,6 +37,8 @@ const NavBar = () => {
       } else {
         setIsShown(true);
       }
+    } else if (!isShown && !isOpen && currentScrollY < prevScrollY.current) {
+      setIsShown(true);
     }
 
     if (currentScrollY === 0) {
@@ -80,19 +48,76 @@ const NavBar = () => {
     }
 
     prevScrollY.current = currentScrollY;
-  };
+  }, [isOpen, isShown, setAtTop, setIsShown]);
 
-  const handleKeyDown = (e, targetId) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      scroller.scrollTo(targetId, {
-        duration: 1000,
-        smooth: true,
-      });
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        document.body.classList.remove("no-scroll");
+        setIsOpen(false);
+      }
+    };
 
-      setIsOpen(false);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [setIsOpen]);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [handleClickOutside]);
+
+  useEffect(() => {
+    document.addEventListener("scroll", handleWheel);
+
+    return () => {
+      document.removeEventListener("scroll", handleWheel);
+    };
+  }, [handleWheel]);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
     }
-  };
+
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setFirstLoad(false);
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, [setFirstLoad]);
+
+  const toggleMenu = useCallback(() => {
+    setIsOpen(!isOpen);
+  }, [isOpen, setIsOpen]);
+
+  const handleKeyDown = useCallback(
+    (e, targetId) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        scroller.scrollTo(targetId, {
+          duration: 1000,
+          smooth: true,
+        });
+
+        setIsOpen(false);
+      }
+    },
+    [setIsOpen],
+  );
 
   return (
     <>
