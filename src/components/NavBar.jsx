@@ -148,7 +148,7 @@ const NavBar = () => {
                     to={section}
                     href={`#${section}`}
                     smooth={true}
-                    offset={-80}
+                    offset={-50}
                     duration={1000}
                     onKeyDown={(e) => handleKeyDown(e, section)}
                     tabIndex={`${isShown ? "0" : "-1"}`}
@@ -222,7 +222,6 @@ const NavBar = () => {
                   to={section}
                   href={`#${section}`}
                   smooth={true}
-                  offset={-50}
                   duration={1000}
                   spy={true}
                   onClick={toggleMenu}
