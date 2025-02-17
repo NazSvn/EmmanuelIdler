@@ -23,7 +23,7 @@ const Contact = () => {
       setFirstLoad(false);
     }, 1000);
     return () => clearTimeout(timeout);
-  }, []);
+  }, [setFirstLoad]);
 
   return (
     <>
