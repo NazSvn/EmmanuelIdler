@@ -1,7 +1,9 @@
 import { RiArrowDropRightLine } from "react-icons/ri";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useMemo, useRef } from "react";
 import { GlobalContext } from "../context";
 import useIntersectionObserver from "./utils/useIntersectionObserver";
+import { TbMail } from "react-icons/tb";
+import { Link } from "react-scroll";
 
 const About = () => {
   const { setCurrentSection } = useContext(GlobalContext);
@@ -17,13 +19,15 @@ const About = () => {
       { threshold: 0.5 },
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentRef = sectionRef.current;
+
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [setCurrentSection]);
@@ -31,6 +35,11 @@ const About = () => {
   const [ref, isVisible, scrollDirection] = useIntersectionObserver({
     threshold: 0.25,
   });
+
+  const technologies = useMemo(
+    () => ["Node.js", "Express", "MongoDB", "JWT", "REST APIs", "Stripe"],
+    [],
+  );
 
   return (
     <section
@@ -66,17 +75,21 @@ const About = () => {
           {/* About Me Paragraph */}
           <p className="mr-4 w-3/5 text-wrap leading-relaxed max-sm:w-auto">
             Hi! I&apos;m <span className="text-[#45CB85]">Emmanuel Idler</span>,
-            a Junior Front-End Developer with a strong passion for continuously
-            learn and grow, both professionally and personally. I have hands-on
-            experience with <span className="text-[#45CB85]">HTML</span>,{" "}
+            a Full-Stack Developer with strong front-end foundations and growing
+            backend expertise. I have hands-on experience with{" "}
+            <span className="text-[#45CB85]">HTML</span>,{" "}
             <span className="text-[#45CB85]">CSS</span>,{" "}
-            <span className="text-[#45CB85]">JavaScript </span>,{" "}
-            <span className="text-[#45CB85]">React </span> and{" "}
-            <span className="text-[#45CB85]">Tailwind CSS </span>. My goal is to
-            leverage my skills to build innovative and impactful web
+            <span className="text-[#45CB85]">JavaScript</span>,{" "}
+            <span className="text-[#45CB85]">React</span>,{" "}
+            <span className="text-[#45CB85]">Tailwind CSS</span>, and recently
+            expanded into <span className="text-[#45CB85]">Node.js</span>,{" "}
+            <span className="text-[#45CB85]">Express</span>,{" "}
+            <span className="text-[#45CB85]">MongoDB</span>, and building
+            complete <span className="text-[#45CB85]">MERN</span> applications.
+            My goal is to leverage my skills to build innovative, end-to-end web
             experiences. I&apos;m highly motivated, eager to tackle new
             challenges, and always looking for opportunities to expand my
-            knowledge and improve my skills. <br />
+            knowledge across the full development stack. <br />
             Feel free to check out my projects and get in touch if you&apos;d
             like to collaborate or have any questions!
           </p>
@@ -96,12 +109,23 @@ const About = () => {
             <p className="mb-2 text-[#45CB85]">
               Technologies I&apos;ve worked with recently:
             </p>
-            <ul
-              className="grid grid-cols-2 gap-2 text-xs"
-              aria-label="Technologies list"
-            >
-              {["HTML", "CSS", "JavaScript", "Tailwind CSS", "React"].map(
-                (tech) => (
+            {/* Front-End Section */}
+            <div className="mb-4">
+              <h3 className="mb-2 text-sm font-semibold text-[#3bad72]">
+                Front-End
+              </h3>
+              <ul
+                className="grid grid-cols-2 gap-2 text-xs"
+                aria-label="Front-End Technologies list"
+              >
+                {[
+                  "HTML",
+                  "CSS",
+                  "JavaScript",
+                  "Tailwind CSS",
+                  "React",
+                  "Zustand",
+                ].map((tech) => (
                   <li
                     key={tech}
                     className="custom-hover-underline"
@@ -115,10 +139,50 @@ const About = () => {
                       {tech}
                     </span>
                   </li>
-                ),
-              )}
-            </ul>
+                ))}
+              </ul>
+            </div>
+
+            {/* Back-End Section */}
+            <div>
+              <h3 className="mb-2 text-sm font-semibold text-[#3bad72]">
+                Back-End
+              </h3>
+              <ul
+                className="grid grid-cols-2 gap-2 text-xs"
+                aria-label="Back-End Technologies list"
+              >
+                {technologies.map((tech) => (
+                  <li
+                    key={tech}
+                    className="custom-hover-underline"
+                    tabIndex={0}
+                  >
+                    <RiArrowDropRightLine
+                      className="inline"
+                      aria-hidden="true"
+                    />
+                    <span className="text-inherit transition-all duration-300">
+                      {tech}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
+        </div>
+        <div className="mb-6 mt-4 flex flex-wrap gap-4 max-sm:w-auto">
+          <Link
+            className="inline-flex items-center rounded-md border border-[#45CB85] px-4 py-2 text-sm font-medium transition-all duration-300 hover:bg-[#45cb8610] hover:text-[#45CB85] focus:outline-none focus:ring-2 focus:ring-[#70D7A1] focus:ring-offset-2"
+            to={"contact"}
+            href={"#contact"}
+            smooth={true}
+            offset={-80}
+            duration={1000}
+          >
+            <TbMail className="m-1 inline size-6 cursor-pointer transition-all duration-300 ease-in-out" />
+            Contact Me
+          </Link>
         </div>
       </div>
     </section>
