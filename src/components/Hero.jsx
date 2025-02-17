@@ -1,7 +1,8 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { IoLogoCss3, IoLogoHtml5 } from "react-icons/io";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { IoLogoCss3, IoLogoHtml5, IoLogoNodejs } from "react-icons/io";
 import { RiJavascriptFill, RiReactjsFill } from "react-icons/ri";
 import { GlobalContext } from "../context";
+import { SiExpress, SiMongodb } from "react-icons/si";
 
 const Hero = () => {
   const { firstLoad, setFirstLoad, setCurrentSection } =
@@ -19,13 +20,15 @@ const Hero = () => {
       { threshold: 0.5 },
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    const currentRef = sectionRef.current;
+
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [setCurrentSection]);
@@ -44,43 +47,73 @@ const Hero = () => {
     return () => clearTimeout(timeoutId);
   }, []);
 
-  const techStack = [
-    {
-      icon: IoLogoHtml5,
-      label: "HTML5",
-      color: "#f06529",
-      hover: "hover:fill-[#f06529]",
-      focus: "focus-visible:fill-[#f06529]",
-    },
-    {
-      icon: IoLogoCss3,
-      label: "CSS3",
-      color: "#264de4",
-      hover: "hover:fill-[#264de4]",
-      focus: "focus-visible:fill-[#264de4]",
-    },
-    {
-      icon: RiJavascriptFill,
-      label: "JavaScript",
-      color: "#f0db4f",
-      hover: "hover:fill-[#f0db4f]",
-      focus: "focus-visible:fill-[#f0db4f]",
-    },
-    {
-      icon: RiReactjsFill,
-      label: "React",
-      color: "#61dafb",
-      hover: "hover:fill-[#61dafb]",
-      focus: "focus-visible:fill-[#61dafb]",
-    },
-  ];
+  const techStack = useMemo(
+    () => [
+      {
+        icon: IoLogoHtml5,
+        label: "HTML5",
+        color: "#f06529",
+        hover: "hover:fill-[#f06529]",
+        focus: "focus-visible:fill-[#f06529]",
+      },
+      {
+        icon: IoLogoCss3,
+        label: "CSS3",
+        color: "#264de4",
+        hover: "hover:fill-[#264de4]",
+        focus: "focus-visible:fill-[#264de4]",
+      },
+      {
+        icon: RiJavascriptFill,
+        label: "JavaScript",
+        color: "#f0db4f",
+        hover: "hover:fill-[#f0db4f]",
+        focus: "focus-visible:fill-[#f0db4f]",
+      },
+      {
+        icon: RiReactjsFill,
+        label: "React",
+        color: "#61dafb",
+        hover: "hover:fill-[#61dafb]",
+        focus: "focus-visible:fill-[#61dafb]",
+      },
+      {
+        icon: IoLogoNodejs,
+        label: "Nojde.js",
+        color: "#339933",
+        hover: "hover:fill-[#339933]",
+        focus: "focus-visible:fill-[#339933]",
+      },
+      {
+        icon: SiExpress,
+        label: "Express",
+        color: "#000000",
+        hover: "hover:fill-[#000000]",
+        focus: "focus-visible:fill-[#000000]",
+      },
+      {
+        icon: SiMongodb,
+        label: "MongoDB",
+        color: "#47A248",
+        hover: "hover:fill-[#47A248]",
+        focus: "focus-visible:fill-[#47A248]",
+      },
+    ],
+    [],
+  );
 
-  const animationDelay = [
-    "delay-[1500ms]",
-    "delay-[1600ms]",
-    "delay-[1700ms]",
-    "delay-[1800ms]",
-  ];
+  const animationDelay = useMemo(
+    () => [
+      "delay-[1500ms]",
+      "delay-[1600ms]",
+      "delay-[1700ms]",
+      "delay-[1800ms]",
+      "delay-[1900ms]",
+      "delay-[2000ms]",
+      "delay-[2100ms]",
+    ],
+    [],
+  );
 
   return (
     <header
@@ -110,7 +143,7 @@ const Hero = () => {
                 : "translate-y-0 opacity-100"
             } delay-[1000ms] duration-[600ms] ease-in-out`}
           >
-            Front-End Developer.
+            Full-Stack Developer.
           </h2>
 
           {/* Intro Paragraph */}
@@ -121,12 +154,13 @@ const Hero = () => {
                 : "translate-y-0 opacity-100"
             } delay-[1200ms] duration-[600ms] ease-in-out`}
           >
-            Hi! I&apos;m a Junior Front-End Developer with a strong passion for
-            creating beautiful, responsive, and user-friendly web applications.
+            Hi! I&apos;m a Full-Stack Developer with a passion for creating
+            beautiful, responsive, and user-friendly web applications across the
+            entire technology stack.
           </p>
 
           {/* Tech Stack */}
-          <div className="mt-6 flex items-center gap-3">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
             <p
               className={`transform text-lg text-[#45CB85] transition ${
                 firstLoad ? "opacity-0" : "opacity-100"
@@ -134,7 +168,7 @@ const Hero = () => {
             >
               Tech stack:
             </p>
-            <div className="flex content-center">
+            <div className="flex flex-wrap content-center">
               {techStack.map((tech, index) => (
                 <span
                   key={tech.label}
