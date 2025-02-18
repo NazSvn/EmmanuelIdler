@@ -1,5 +1,46 @@
 [
   {
+    "href": "https://mern-e-commerce-tydf.onrender.com/",
+    "images": {
+      "avif": {
+        "srcset": {
+          "175w": "/images/ecomm175.avif",
+          "350w": "/images/ecomm350.avif",
+          "700w": "/images/ecomm700.avif"
+        },
+        "sizes": "(min-width: 700px) 700px, 100vw"
+      },
+      "webp": {
+        "srcset": {
+          "175w": "/images/ecomm175.webp",
+          "350w": "/images/ecomm350.webp",
+          "700w": "/images/ecomm700.webp"
+        },
+        "sizes": "(min-width: 700px) 700px, 100vw"
+      },
+      "png": {
+        "srcset": {
+          "175w": "/images/ecomm175.png",
+          "350w": "/images/ecomm350.png",
+          "700w": "/images/ecomm700.png"
+        },
+        "sizes": "(min-width: 700px) 700px, 100vw"
+      }
+    },
+    "title": "MERN E-commerce App",
+    "description": "This project is a full-stack e-commerce application built using the MERN (MongoDB, Express.js, React, Node.js) stack. It showcases core functionalities of a robust and scalable online store.",
+    "wordsToHighlight": [
+      "full-stack",
+      "MERN",
+      "MongoDB",
+      "Express.js",
+      "React",
+      "Node.js"
+    ],
+    "tech": ["MongoDB", "Express.js", "React", "Node.js"],
+    "code": "https://github.com/NazSvn/MERN_e-commerce"
+  },
+  {
     "href": "https://nazsvn.github.io/AmazonPseudoClone/",
     "images": {
       "avif": {
