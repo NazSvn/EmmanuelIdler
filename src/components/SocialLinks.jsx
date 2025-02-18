@@ -1,15 +1,21 @@
 import PropTypes from "prop-types";
 
-const SocialLinks = ({ href, label, icon: IconComponent }) => (
+const SocialLinks = ({
+  href,
+  label,
+  icon: IconComponent,
+  aClass,
+  icnClass,
+}) => (
   <span>
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="inline-block focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1]"
+      className={aClass}
     >
-      <IconComponent className="m-1 inline size-11 cursor-pointer transition-all hover:size-12 hover:text-[#45CB85]" />
+      <IconComponent className={icnClass} />
     </a>
   </span>
 );
@@ -20,4 +26,6 @@ SocialLinks.propTypes = {
   href: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   icon: PropTypes.elementType.isRequired,
+  aClass: PropTypes.string,
+  icnClass: PropTypes.string,
 };
