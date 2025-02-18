@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { cloneElement, useId, useState } from "react";
 import PropTypes from "prop-types";
 
 const Tooltip = ({ text, children, position = "top" }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const tooltipId = useId();
 
   const positions = {
     top: "bottom-full left-1/2 -translate-x-1/2 mb-2",
@@ -24,14 +25,22 @@ const Tooltip = ({ text, children, position = "top" }) => {
     clearTimeout(timeOutId);
   };
 
+  const childWithProps = cloneElement(children, {
+    "aria-describedby": isVisible ? tooltipId : undefined,
+    onMouseEnter: handleMouseEnter,
+    onMouseLeave: handleMouseLeave,
+  });
+
   return (
     <>
       <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        {children}
+        {childWithProps}
       </div>
 
       {isVisible && (
         <div
+          id={tooltipId}
+          role="tooltip"
           className={`absolute z-10 whitespace-nowrap rounded-lg bg-gray-700 px-2 py-1 text-xs text-white ${positions[position]} `}
         >
           {text}
