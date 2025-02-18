@@ -4,6 +4,7 @@ import projects from "../data/projects.json";
 import { useContext, useRef, useEffect } from "react";
 import { GlobalContext } from "../context";
 import useIntersectionObserver from "./utils/useIntersectionObserver";
+import Tooltip from "./Tooltip";
 
 const highlightWords = (text, wordsToHighlight) => {
   return text
@@ -20,21 +21,7 @@ const highlightWords = (text, wordsToHighlight) => {
 };
 
 const ProjectTile = () => {
-  const { showTooltip, setShowTooltip, setCurrentSection } =
-    useContext(GlobalContext);
-
-  let timeOutId;
-
-  const handleMouseEnter = (icon, index) => {
-    timeOutId = setTimeout(() => {
-      setShowTooltip({ icon, index });
-    }, 1000);
-  };
-
-  const handleMouseLeave = () => {
-    setShowTooltip(null);
-    clearTimeout(timeOutId);
-  };
+  const { setCurrentSection } = useContext(GlobalContext);
 
   const sectionRef = useRef(null);
 
@@ -175,27 +162,17 @@ const ProjectTile = () => {
                           );
                         })}
                       </ul>
-                      <div className="h-7">
+                      <div className="inline-flex h-7 gap-1">
                         <a
                           href={project.code}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="group relative focus-visible:outline-none"
-                          onMouseEnter={() => handleMouseEnter("git", index)}
-                          onMouseLeave={handleMouseLeave}
                           aria-describedby={`tooltip-git-${index}`}
                         >
-                          <TbBrandGithub className="pointer-events-auto m-1 inline size-6 cursor-pointer transition-all hover:text-[#45CB85] group-focus-visible:rounded-sm group-focus-visible:outline-none group-focus-visible:ring-2 group-focus-visible:ring-[#70D7A1]" />
-                          {showTooltip?.icon === "git" &&
-                            showTooltip?.index === index && (
-                              <span
-                                id={`tooltip-git-${index}`}
-                                role="tooltip"
-                                className="absolute -bottom-10 left-6 mb-2 rounded border bg-black px-2 py-1 text-xs text-white opacity-100"
-                              >
-                                Github
-                              </span>
-                            )}
+                          <Tooltip text="Github" position="bottom">
+                            <TbBrandGithub className="pointer-events-auto m-1 inline size-6 cursor-pointer transition-all hover:text-[#45CB85] group-focus-visible:rounded-sm group-focus-visible:outline-none group-focus-visible:ring-2 group-focus-visible:ring-[#70D7A1]" />
+                          </Tooltip>
                         </a>
 
                         <a
@@ -203,21 +180,11 @@ const ProjectTile = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="group relative focus-visible:outline-none"
-                          onMouseEnter={() => handleMouseEnter("link", index)}
-                          onMouseLeave={handleMouseLeave}
                           aria-describedby={`tooltip-link-${index}`}
                         >
-                          <FiExternalLink className="pointer-events-auto m-1 inline size-6 cursor-pointer transition-all hover:text-[#45CB85] group-focus-visible:rounded-sm group-focus-visible:outline-none group-focus-visible:ring-2 group-focus-visible:ring-[#70D7A1]" />
-                          {showTooltip?.icon === "link" &&
-                            showTooltip?.index === index && (
-                              <span
-                                id={`tooltip-link-${index}`}
-                                role="tooltip"
-                                className="absolute -bottom-10 left-6 mb-2 text-nowrap rounded border bg-black px-2 py-1 text-xs text-white opacity-100"
-                              >
-                                External link
-                              </span>
-                            )}
+                          <Tooltip text="External link" position="bottom">
+                            <FiExternalLink className="pointer-events-auto m-1 inline size-6 cursor-pointer transition-all hover:text-[#45CB85] group-focus-visible:rounded-sm group-focus-visible:outline-none group-focus-visible:ring-2 group-focus-visible:ring-[#70D7A1]" />
+                          </Tooltip>
                         </a>
                       </div>
                     </div>

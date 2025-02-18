@@ -7,7 +7,6 @@ export default function GlobalState({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isShown, setIsShown] = useState(true);
   const [atTop, setAtTop] = useState(true);
-  const [showTooltip, setShowTooltip] = useState(null);
   const [firstLoad, setFirstLoad] = useState(true);
   const [currentSection, setCurrentSection] = useState("");
 
@@ -20,8 +19,6 @@ export default function GlobalState({ children }) {
         setIsShown,
         atTop,
         setAtTop,
-        showTooltip,
-        setShowTooltip,
         firstLoad,
         setFirstLoad,
         currentSection,

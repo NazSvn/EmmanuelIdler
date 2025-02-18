@@ -1,22 +1,10 @@
 import { useContext, useEffect } from "react";
 import { TbBrandGithub, TbMail, TbBrandLinkedin } from "react-icons/tb";
 import { GlobalContext } from "../context";
+import Tooltip from "./Tooltip";
 
 const Contact = () => {
-  const { showTooltip, setShowTooltip, firstLoad, setFirstLoad } =
-    useContext(GlobalContext);
-  let timeOutId;
-
-  const handleMouseEnter = (icon) => {
-    timeOutId = setTimeout(() => {
-      setShowTooltip(icon);
-    }, 1000);
-  };
-
-  const handleMouseLeave = () => {
-    setShowTooltip(null);
-    clearTimeout(timeOutId);
-  };
+  const { firstLoad, setFirstLoad } = useContext(GlobalContext);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -24,6 +12,8 @@ const Contact = () => {
     }, 1000);
     return () => clearTimeout(timeout);
   }, [setFirstLoad]);
+
+  
 
   return (
     <>
@@ -38,66 +28,39 @@ const Contact = () => {
               href="https://github.com/NazSvn"
               target="_blank"
               rel="noopener noreferrer"
-              onMouseEnter={() => handleMouseEnter("github")}
-              onMouseLeave={handleMouseLeave}
               aria-label="Visit my GitHub profile"
               className="inline-block focus-visible:-translate-y-1 focus-visible:rounded-sm focus-visible:text-[#45CB85] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1] focus-visible:transition-all focus-visible:duration-300 focus-visible:ease-in-out"
             >
-              <TbBrandGithub className="m-1 inline size-6 cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:text-[#45CB85]" />
+              <Tooltip text="GitHub" position="bottom">
+                <TbBrandGithub className="m-1 inline size-6 cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:text-[#45CB85]" />
+              </Tooltip>
             </a>
-            {showTooltip === "github" && (
-              <span
-                id="tooltip-github"
-                role="tooltip"
-                className="absolute -bottom-6 left-7 mb-2 rounded border bg-black px-2 py-1 text-xs text-white opacity-100"
-              >
-                Github
-              </span>
-            )}
           </li>
           <li className="relative mb-4">
             <a
               href="mailto:idler90@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
-              onMouseEnter={() => handleMouseEnter("mail")}
-              onMouseLeave={handleMouseLeave}
               aria-label="Send me an email"
               className="inline-block focus-visible:-translate-y-1 focus-visible:rounded-sm focus-visible:text-[#45CB85] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1] focus-visible:transition-all focus-visible:duration-300 focus-visible:ease-in-out"
             >
-              <TbMail className="m-1 inline size-6 cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:text-[#45CB85]" />
+              <Tooltip text="Email" position="bottom">
+                <TbMail className="m-1 inline size-6 cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:text-[#45CB85]" />
+              </Tooltip>
             </a>
-            {showTooltip === "mail" && (
-              <span
-                id="tooltip-mail"
-                role="tooltip"
-                className="absolute -bottom-6 left-7 mb-2 rounded border bg-black px-2 py-1 text-xs text-white opacity-100"
-              >
-                Mail
-              </span>
-            )}
           </li>
           <li className="relative mb-10">
             <a
               href="http://linkedin.com/in/emmanuel-idler-8b6a30227"
               target="_blank"
               rel="noopener noreferrer"
-              onMouseEnter={() => handleMouseEnter("linkedin")}
-              onMouseLeave={handleMouseLeave}
               aria-label="Visit my LinkedIn profile"
               className="inline-block focus-visible:-translate-y-1 focus-visible:rounded-sm focus-visible:text-[#45CB85] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1] focus-visible:transition-all focus-visible:duration-300 focus-visible:ease-in-out"
             >
-              <TbBrandLinkedin className="m-1 inline size-6 cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:text-[#45CB85]" />
+              <Tooltip text="LinkedIn" position="bottom">
+                <TbBrandLinkedin className="m-1 inline size-6 cursor-pointer transition-all duration-300 ease-in-out hover:-translate-y-1 hover:text-[#45CB85]" />
+              </Tooltip>
             </a>
-            {showTooltip === "linkedin" && (
-              <span
-                id="tooltip-linkedin"
-                role="tooltip"
-                className="absolute -bottom-7 left-7 mb-2 rounded border bg-black px-2 py-1 text-xs text-white opacity-100"
-              >
-                LinkedIn
-              </span>
-            )}
           </li>
         </ul>
       </div>
