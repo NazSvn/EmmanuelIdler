@@ -171,9 +171,19 @@ const About = () => {
             </div>
           </div>
         </div>
-        <div className="mb-6 mt-4 flex flex-wrap gap-4 max-sm:w-auto">
+        <div
+          className={`*: mb-6 mt-4 flex flex-wrap gap-4 max-sm:w-auto ${
+            scrollDirection === "down"
+              ? `transform transition delay-300 duration-1000 ease-in-out ${
+                  isVisible
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-20 opacity-0"
+                }`
+              : ""
+          }`}
+        >
           <Link
-            className="inline-flex items-center rounded-md border border-[#45CB85] px-4 py-2 text-sm font-medium transition-all duration-300 hover:bg-[#45cb8610] hover:text-[#45CB85] focus:outline-none focus:ring-2 focus:ring-[#70D7A1] focus:ring-offset-2"
+            className="inline-flex items-center rounded-md border border-[#45CB85] px-4 py-2 text-sm font-medium transition-all duration-300 ease-in-out hover:bg-[#45cb8610] hover:text-[#45CB85] focus:outline-none focus:ring-2 focus:ring-[#70D7A1] focus:ring-offset-2"
             to={"contact"}
             href={"#contact"}
             smooth={true}
