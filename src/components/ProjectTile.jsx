@@ -1,10 +1,11 @@
 import { TbBrandGithub } from "react-icons/tb";
 import { FiExternalLink } from "react-icons/fi";
 import projects from "../data/projects.json";
-import { useContext, useRef, useEffect } from "react";
+import { useContext, useRef, useEffect, useMemo } from "react";
 import { GlobalContext } from "../context";
 import useIntersectionObserver from "./utils/useIntersectionObserver";
 import Tooltip from "./Tooltip";
+import SocialLinks from "./SocialLinks";
 
 const highlightWords = (text, wordsToHighlight) => {
   return text
@@ -47,6 +48,20 @@ const ProjectTile = () => {
     };
   }, [setCurrentSection]);
 
+  const tileLinks = useMemo(
+    () => [
+      {
+        label: "GitHub repo",
+        icon: TbBrandGithub,
+      },
+      {
+        label: "External link",
+        icon: FiExternalLink,
+      },
+    ],
+    [],
+  );
+
   return (
     <>
       <section id="projects" ref={sectionRef} className="pt-24 md:pt-28">
@@ -64,6 +79,9 @@ const ProjectTile = () => {
             const [ref, isVisible, scrollDirection] = useIntersectionObserver({
               threshold: 0.2,
             });
+
+            const hrefs = [project.code, project.href];
+
             return (
               <div
                 key={index}
@@ -162,31 +180,23 @@ const ProjectTile = () => {
                           );
                         })}
                       </ul>
-                      <div className="inline-flex h-7 gap-1">
-                        <a
-                          href={project.code}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group relative focus-visible:outline-none"
-                          aria-describedby={`tooltip-git-${index}`}
-                        >
-                          <Tooltip text="Github" position="bottom">
-                            <TbBrandGithub className="pointer-events-auto m-1 inline size-6 cursor-pointer transition-all hover:text-[#45CB85] group-focus-visible:rounded-sm group-focus-visible:outline-none group-focus-visible:ring-2 group-focus-visible:ring-[#70D7A1]" />
-                          </Tooltip>
-                        </a>
 
-                        <a
-                          href={project.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group relative focus-visible:outline-none"
-                          aria-describedby={`tooltip-link-${index}`}
+                      {tileLinks.map((link, i) => (
+                        <div
+                          key={link.label}
+                          className="relative inline-flex h-7 gap-1"
                         >
-                          <Tooltip text="External link" position="bottom">
-                            <FiExternalLink className="pointer-events-auto m-1 inline size-6 cursor-pointer transition-all hover:text-[#45CB85] group-focus-visible:rounded-sm group-focus-visible:outline-none group-focus-visible:ring-2 group-focus-visible:ring-[#70D7A1]" />
-                          </Tooltip>
-                        </a>
-                      </div>
+                          <Tooltip text={link.label} position="bottom">
+                            <SocialLinks
+                              href={hrefs[i]}
+                              label={link.label}
+                              icon={link.icon}
+                              aClass="group relative focus-visible:outline-none"
+                              icnClass="pointer-events-auto m-1 inline size-6 cursor-pointer transition-all hover:text-[#45CB85] group-focus-visible:rounded-sm group-focus-visible:outline-none group-focus-visible:ring-2 group-focus-visible:ring-[#70D7A1]"
+                            />
+                          </Tooltip>{" "}
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
