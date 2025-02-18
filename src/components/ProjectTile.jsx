@@ -47,14 +47,15 @@ const ProjectTile = () => {
       },
       { root: null, rootMargin: "0px", threshold: [0.25] },
     );
+    const currentRef = sectionRef.current;
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [setCurrentSection]);
