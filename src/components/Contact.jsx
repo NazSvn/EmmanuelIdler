@@ -39,15 +39,19 @@ const Contact = () => {
 
   const contactInfo = useMemo(
     () => [
-      { href: "mailto:idler90@gmail.com", label: "Mail", icon: TbMail },
       {
         href: "https://github.com/NazSvn",
-        label: "Github",
+        label: "GitHub profile",
         icon: TbBrandGithub,
       },
       {
+        href: "mailto:idler90@gmail.com",
+        label: "Email me",
+        icon: TbMail,
+      },
+      {
         href: "http://linkedin.com/in/emmanuel-idler-8b6a30227",
-        label: "LinkedIn",
+        label: "LinkedIn profile",
         icon: TbBrandLinkedin,
       },
     ],
@@ -93,6 +97,12 @@ const Contact = () => {
                       href={contact.href}
                       label={contact.label}
                       icon={contact.icon}
+                      aClass={
+                        "inline-block focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#70D7A1]"
+                      }
+                      icnClass={
+                        "m-1 inline size-11 cursor-pointer transition-all hover:size-12 hover:text-[#45CB85]"
+                      }
                     />
                   </Tooltip>
                 </span>
