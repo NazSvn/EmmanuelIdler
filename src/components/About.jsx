@@ -2,8 +2,7 @@ import { RiArrowDropRightLine } from "react-icons/ri";
 import { useContext, useEffect, useMemo, useRef } from "react";
 import { GlobalContext } from "../context";
 import useIntersectionObserver from "./utils/useIntersectionObserver";
-import { TbMail } from "react-icons/tb";
-import { Link } from "react-scroll";
+import { FiExternalLink } from "react-icons/fi";
 
 const About = () => {
   const { setCurrentSection } = useContext(GlobalContext);
@@ -182,17 +181,14 @@ const About = () => {
               : ""
           }`}
         >
-          <Link
-            className="inline-flex items-center rounded-md border border-[#45CB85] px-4 py-2 text-sm font-medium transition-all duration-300 ease-in-out hover:bg-[#45cb8610] hover:text-[#45CB85] focus:outline-none focus:ring-2 focus:ring-[#70D7A1] focus:ring-offset-2"
-            to={"contact"}
-            href={"#contact"}
-            smooth={true}
-            offset={-80}
-            duration={1000}
+          <a
+            className="group inline-flex items-center rounded-md border border-[#45CB85] px-4 py-2 text-sm font-medium transition-all duration-300 ease-in-out hover:bg-[#45cb8610] hover:text-[#45CB85] focus:outline-none focus:ring-2 focus:ring-[#70D7A1]"
+            href="/Emmanuel_Idler.pdf"
+            target="_blank"
           >
-            <TbMail className="m-1 inline size-6 cursor-pointer transition-all duration-300 ease-in-out" />
-            Contact Me
-          </Link>
+            <span className="mr-1">Resume</span>
+            <FiExternalLink className="m-1 inline size-6 cursor-pointer transition-all duration-300 ease-in-out hover:text-[#45CB85] group-hover:-translate-y-1" />
+          </a>
         </div>
       </div>
     </section>
